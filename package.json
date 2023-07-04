@@ -3,7 +3,13 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "glogin": "clasp login",
+    "glogout": "clasp logout",
+    "gcreate": "clasp create --title 'Oskon CV Automation' --rootDir ./apps-scripts",
+    "gclone": "clasp clone SCRIPT_ID --rootDir ./apps-scripts",
+    "gpull": "clasp pull",
+    "gpush": "clasp push",
+    "gstart": "clasp push --watch"
   },
   "author": "",
   "license": "ISC",
