@@ -15,8 +15,13 @@ function onInstall(e) {
  * @param {object} e
  */
 function onOpen(e) {
-  DocumentApp.getUi()
-    .createAddonMenu()
-    .addItem("Start", "showSidebar")
-    .addToUi();
+   var ui = DocumentApp.getUi();
+
+
+   ui.createMenu('Custom Menu')
+      .addItem('First item', 'menuItem1')
+      .addSeparator()
+      .addSubMenu(ui.createMenu('Sub-menu')
+          .addItem('Second item', 'menuItem2'))
+      .addToUi();
 }
