@@ -1,0 +1,34 @@
+<html>
+
+<head>
+    <script>
+        function onSuccess(message) {
+            document.getElementById("test").innerHTML = message;
+        }
+
+        function onFailure(e) {
+            document.getElementById("test").innerHTML = e.message;
+        }
+
+        function onButtonClick() {
+            google.script.run
+                .withFailureHandler(onFailure)
+                .withSuccessHandler(onSuccess)
+                .doSomething()
+        }
+    </script>
+</head>
+
+<body>
+    <input type="file">
+
+    <button onclick="onButtonClick()" value="Not Clicked">
+        Convert
+    </button>
+
+    <p id="test">Hi</p>
+</body>
+
+
+
+</html>
