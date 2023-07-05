@@ -18,10 +18,18 @@ function onOpen(e) {
   var ui = DocumentApp.getUi();
 
   ui.createMenu("CV Automation")
-    .addItem("Upload CV", "showUploadFileDialog")
+    .addItem("Upload", "showUploadFileDialog")
     .addSeparator()
-    .addItem("Enhance CV", "")
+    .addItem("Enhance", "enhanceCVSidebar")
     .addToUi();
 }
 
-function showUploadFileDialog() {}
+function showUploadFileDialog() {
+  const html = HtmlService.createHtmlOutputFromFile("file-upload-dialog")
+    .setWidth(400)
+    .setHeight(300);
+
+  DocumentApp.getUi().showModalDialog(html, "Upload the CV");
+}
+
+function enhanceCVSidebar() {}
