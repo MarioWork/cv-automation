@@ -15,13 +15,13 @@ function onInstall(e) {
  * @param {object} e
  */
 function onOpen(e) {
-   var ui = DocumentApp.getUi();
+  var ui = DocumentApp.getUi();
 
-
-   ui.createMenu('Custom Menu')
-      .addItem('First item', 'menuItem1')
-      .addSeparator()
-      .addSubMenu(ui.createMenu('Sub-menu')
-          .addItem('Second item', 'menuItem2'))
-      .addToUi();
+  ui.createMenu("CV Automation")
+    .addItem("Upload CV", "showUploadFileDialog")
+    .addSeparator()
+    .addItem("Enhance CV", "")
+    .addToUi();
 }
+
+function showUploadFileDialog() {}
