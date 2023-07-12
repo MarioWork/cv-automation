@@ -1,34 +1,42 @@
 <html>
 
-<head>
-    <script>
-        function onSuccess(message) {
-            //Do something
-        }
-
-        function onFailure(e) {
-            document.getElementById("error-message").innerHTML = e.message;
-        }
-
-        function onButtonClick() {
-            google.script.run
-                .withFailureHandler(onFailure)
-                .withSuccessHandler(onSuccess)
-                .doSomething()
-        }
-    </script>
-</head>
-
 <body>
-    <input type="file">
+    <form>
+        <input name="fileInput" type="file">
+        <input type="submit" value="submit">
+    </form>
+    <div id="message"></div>
 
-    <button onclick="onButtonClick()">
-        Extract Text
-    </button>
+    <script>
+        const form = document.querySelector('form');
+        const fileInput = document.querySelector('input[name="fileInput"]');
+        const message = document.getElementById('message');
 
-    <p id="error-message"></p>
+
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+            const file = fileInput.files[0];
+
+            const fileReader = new FileReader();
+            fileReader.onload = (e) => {
+
+                const fileObj = {
+                    filename: file.name,
+                    mimeType: file.type,
+                    data: fileReader.result.split(',')[1]
+                }
+
+                google.script.run.withSuccessHandler(displayResult).extractText(fileObj);
+            }
+
+            fileReader.readAsDataURL(file);
+        });
+
+        function displayResult(result) {
+            message.innerHTML = result.toString();
+        }
+
+    </script>
 </body>
-
-
 
 </html>
