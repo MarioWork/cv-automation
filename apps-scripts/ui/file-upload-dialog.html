@@ -3,11 +3,11 @@
 <head>
     <script>
         function onSuccess(message) {
-            document.getElementById("test").innerHTML = message;
+            //Do something
         }
 
         function onFailure(e) {
-            document.getElementById("test").innerHTML = e.message;
+            document.getElementById("error-message").innerHTML = e.message;
         }
 
         function onButtonClick() {
@@ -22,11 +22,11 @@
 <body>
     <input type="file">
 
-    <button onclick="onButtonClick()" value="Not Clicked">
-        Convert
+    <button onclick="onButtonClick()">
+        Extract Text
     </button>
 
-    <p id="test">Hi</p>
+    <p id="error-message"></p>
 </body>
 
 
