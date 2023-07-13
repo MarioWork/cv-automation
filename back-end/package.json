@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon functions-framework --target=index --source=index"
+    "dev": "nodemon --exec 'functions-framework --target=app  --source=index'"
   },
   "keywords": [],
   "author": "",
