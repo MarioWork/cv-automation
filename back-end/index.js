@@ -1,7 +1,9 @@
 const express = require("express");
 
-module.exports = () => {
-  const app = express();
+const app = express();
 
-  app.get("/", (req, res) => res.send({ message: "Hello World!" }));
+app.get("/", (req, res) => res.send({ message: "Hello World!" }));
+
+module.exports = {
+  app,
 };
