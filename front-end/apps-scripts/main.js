@@ -25,7 +25,7 @@ function onOpen(e) {
 }
 
 function showUploadFileDialog() {
-  const html = HtmlService.createHtmlOutputFromFile("html/file-upload-dialog")
+  const html = HtmlService.createHtmlOutputFromFile("client/file-upload-dialog")
     .setWidth(400)
     .setHeight(300);
 
@@ -33,7 +33,3 @@ function showUploadFileDialog() {
 }
 
 function enhanceCVSidebar() {}
-
-function doSomething() {
-  return "Hello Beautiful World!";
-}
