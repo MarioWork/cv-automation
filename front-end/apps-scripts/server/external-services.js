@@ -1,3 +1,3 @@
-const extractText = async (data) => {
-  return data.data;
+const extractText = async data => {
+    return data.data;
 };
