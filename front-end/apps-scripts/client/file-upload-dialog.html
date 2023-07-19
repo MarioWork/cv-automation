@@ -1,9 +1,17 @@
 <html>
 
-<body>
+<body style="display: flex; justify-content: center;">
 
-    <form>
+    <form style="width: 50%; display: flex; flex-direction:column; gap:25px">
         <input name="fileInput" type="file">
+
+        <select name="careers">
+            <option value="none" disabled selected>Choose one career</option>
+            <option value="frontend">Frontend</option>
+            <option value="backend">Backend</option>
+            <option value="fullstack">Fullstack</option>
+        </select>
+
         <input type="submit" value="submit">
     </form>
 
