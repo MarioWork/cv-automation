@@ -5,9 +5,9 @@ const express = require('express');
 const { DocumentProcessorServiceClient } =
     require('@google-cloud/documentai').v1;
 
-const fs = require('fs').promises;
+//const fs = require('fs').promises;
 
-const filePath = 'CV-Mario-Vieira.pdf';
+//const filePath = 'CV-Mario-Vieira.pdf';
 
 const name = `projects/${process.env.PROJECT_NR}/locations/eu/processors/${process.env.PROCESSOR_ID}`;
 
