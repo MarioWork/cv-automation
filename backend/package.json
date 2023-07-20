@@ -21,6 +21,7 @@
     },
     "dependencies": {
         "@google-cloud/documentai": "^7.4.0",
+        "await-to-js": "^3.0.0",
         "dotenv": "^16.3.1"
     }
 }
