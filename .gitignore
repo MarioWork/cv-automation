@@ -1,5 +1,4 @@
 node_modules
 .clasp.json
-back-end/.env
 .DS_Store
-backend/.env
+*/.env
