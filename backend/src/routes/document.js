@@ -2,7 +2,7 @@ const express = require('express');
 
 const { to } = require('await-to-js');
 
-const { extractText } = require('path');
+const { extractText } = require('../services/document-ai');
 
 const router = express.Router();
 
@@ -11,7 +11,7 @@ router.post('/', async (req, res) => {
 
     if (!file) return res.status(400).send('64BaseEncoded file missing.');
 
-    const [error, response] = await to(extractText(file));
+    const [error, response] = await to(extractText({ file }));
 
     if (error) {
         console.log(error);
