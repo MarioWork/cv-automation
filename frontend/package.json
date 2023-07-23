@@ -5,8 +5,8 @@
     "scripts": {
         "glogin": "clasp login",
         "glogout": "clasp logout",
-        "gcreate": "clasp create --title 'Oskon CV Automation' --rootDir ./apps-scripts",
-        "gclone": "clasp clone SCRIPT_ID --rootDir ./apps-scripts",
+        "gcreate": "clasp create --title 'Oskon CV Automation' --rootDir ./apps-script",
+        "gclone": "clasp clone SCRIPT_ID --rootDir ./apps-script",
         "gpull": "clasp pull",
         "gpush": "clasp push",
         "gstart": "clasp push --watch"
