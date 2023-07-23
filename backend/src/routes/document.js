@@ -18,9 +18,9 @@ router.post('/', async (req, res) => {
         return res.sendStatus(500);
     }
 
-    const { document } = response;
+    const { document } = response[0];
 
-    return res.send({ text: document.text });
+    return res.send(document.text);
 });
 
 module.exports = router;
