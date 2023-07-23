@@ -1,15 +1,10 @@
 require('dotenv').config();
+const { to } = require('await-to-js');
 
 const express = require('express');
 
 const { DocumentProcessorServiceClient } =
     require('@google-cloud/documentai').v1;
-
-//const fs = require('fs').promises;
-
-//const filePath = 'CV-Mario-Vieira.pdf';
-
-const name = `projects/${process.env.PROJECT_NR}/locations/eu/processors/${process.env.PROCESSOR_ID}`;
 
 const app = express();
 
@@ -18,26 +13,28 @@ const client = new DocumentProcessorServiceClient({
 });
 
 app.get('/', async (req, res) => {
-    //const file = await fs.readFile(filePath);
+    const file = req.body?.file;
 
-    //const encodedFile = Buffer.from(file).toString('base64');
+    if (!file) return res.status(400).send('64BaseEncoded file missing.');
 
     const request = {
-        name,
+        name: process.env.DOC_AI_PROCESSOR_ENDPOINT,
         rawDocument: {
-            content: req.body.file64encoded,
+            content: file,
             mimeType: 'application/pdf'
         }
     };
-    try {
-        const [result] = await client.processDocument(request);
-        const { document } = result;
 
-        res.send({ text: document.text });
-    } catch (error) {
-        console.log(error.message);
-        res.sendStatus(500);
+    const [error, response] = await to(client.processDocument(request));
+
+    if (error) {
+        console.log(error);
+        return res.sendStatus(500);
     }
+
+    const { document } = response;
+
+    res.send({ text: document.text });
 });
 
 exports.app = app;
