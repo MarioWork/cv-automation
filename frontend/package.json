@@ -1,0 +1,27 @@
+{
+    "name": "cv-automation",
+    "version": "1.0.0",
+    "description": "",
+    "scripts": {
+        "glogin": "clasp login",
+        "glogout": "clasp logout",
+        "gcreate": "clasp create --title 'Oskon CV Automation' --rootDir ./apps-script",
+        "gclone": "clasp clone  --rootDir ./apps-script",
+        "gpull": "clasp pull",
+        "gpush": "clasp push",
+        "gstart": "clasp push --watch"
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "@google/clasp": "^2.4.2"
+    },
+    "devDependencies": {
+        "@types/google-apps-script": "^1.0.64",
+        "eslint": "^8.45.0",
+        "eslint-config-prettier": "^8.8.0",
+        "eslint-plugin-json": "^3.1.0",
+        "eslint-plugin-prettier": "^5.0.0",
+        "prettier": "^3.0.0"
+    }
+}
