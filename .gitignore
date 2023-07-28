@@ -1,4 +1,4 @@
 node_modules
-.clasp.json
 .DS_Store
 **/.env
+frontend/apps-script/.clasp.json
