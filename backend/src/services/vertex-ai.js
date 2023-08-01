@@ -4,20 +4,20 @@ const { PredictionServiceClient } = aiplatform.v1;
 
 const { helpers } = aiplatform;
 
-const predictionServiceClient = new PredictionServiceClient();
+const predictionServiceClient = new PredictionServiceClient({
+    apiEndpoint: 'us-central1-aiplatform.googleapis.com'
+});
 
-module.exports = async function callPredict() {
+async function callPredict() {
     const prompt = {
-        prompt: 'Give me ten interview questions for the role of program manager.'
+        prompt: 'When was Ronaldo Born?'
     };
     const instanceValue = helpers.toValue(prompt);
     const instances = [instanceValue];
 
-    console.log(instances[0].structValue.fields);
-
     const parameter = {
         temperature: 0.2,
-        maxOutputTokens: 5,
+        maxOutputTokens: 1024,
         topP: 0.95,
         topK: 40
     };
@@ -29,11 +29,9 @@ module.exports = async function callPredict() {
         parameters
     };
 
-    try {
-        const response = await predictionServiceClient.predict(request);
-        console.log('Get text prompt response');
-        console.log(response);
-    } catch (error) {
-        console.log(error);
-    }
-};
+    const response = await predictionServiceClient.predict(request);
+    console.log('Get text prompt response');
+    console.log(response[0].predictions[0].structValue.fields.content);
+}
+
+callPredict();
