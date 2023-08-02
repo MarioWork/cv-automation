@@ -8,10 +8,13 @@ const predictionServiceClient = new PredictionServiceClient({
     apiEndpoint: 'us-central1-aiplatform.googleapis.com'
 });
 
-async function callPredict() {
+const promptInstructions = 'Organize this data into a javascript object. ';
+
+exports.organizeDataIntoDataStructure = async ({ promptData }) => {
     const prompt = {
-        prompt: 'When was Ronaldo Born?'
+        prompt: promptInstructions + promptData
     };
+
     const instanceValue = helpers.toValue(prompt);
     const instances = [instanceValue];
 
@@ -21,6 +24,7 @@ async function callPredict() {
         topP: 0.95,
         topK: 40
     };
+
     const parameters = helpers.toValue(parameter);
 
     const request = {
@@ -30,8 +34,13 @@ async function callPredict() {
     };
 
     const response = await predictionServiceClient.predict(request);
-    console.log('Get text prompt response');
-    console.log(response[0].predictions[0].structValue.fields.content);
-}
 
-callPredict();
+    const predictionStr =
+        response[0].predictions[0].structValue.fields.content.stringValue;
+
+    const predictionStrCleaned = predictionStr.replace(/\r\n|\n|'|`/g, '');
+
+    return {
+        data: JSON.parse(predictionStrCleaned)
+    };
+};
