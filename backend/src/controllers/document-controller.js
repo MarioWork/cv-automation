@@ -7,17 +7,15 @@ module.exports = async (req, res) => {
 
     if (!file) return res.status(400).send('64BaseEncoded file missing.');
 
-    const [docError, response] = await to(extractText({ file }));
+    const [docError, docText] = await to(extractText({ file }));
 
     if (docError) {
         console.log(docError);
         return res.sendStatus(500);
     }
 
-    const { document } = response[0];
-
     const [aiError, data] = await to(
-        organizeDataIntoDataStructure(document.text)
+        organizeDataIntoDataStructure({ promptData: docText })
     );
 
     if (aiError) {

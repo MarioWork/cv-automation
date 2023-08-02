@@ -7,7 +7,7 @@ const client = new DocumentProcessorServiceClient({
     apiEndpoint: 'eu-documentai.googleapis.com'
 });
 
-exports.extractText = ({ file }) => {
+exports.extractText = async ({ file }) => {
     const request = {
         name: process.env.DOC_AI_PROCESSOR_ENDPOINT,
         rawDocument: {
@@ -16,5 +16,7 @@ exports.extractText = ({ file }) => {
         }
     };
 
-    return client.processDocument(request);
+    const response = await client.processDocument(request);
+
+    return response[0].document.text;
 };
