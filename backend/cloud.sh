@@ -4,6 +4,6 @@ gcloud functions deploy cv-automation-api \
     --trigger-http \
     --runtime=nodejs18 \
     --entry-point=app \
-    --service-account=datastore-read-function@$PROJECT_ID.iam.gserviceaccount.com \
-    --region=europe-west4 \
+    --service-account=doc-vertex-ai-cloud-function@$PROJECT_ID.iam.gserviceaccount.com \
+    --region=europe-west2 \
     --no-allow-unauthenticated \
