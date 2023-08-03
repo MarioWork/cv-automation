@@ -1,6 +1,7 @@
 export PROJECT_ID=$(gcloud config list --format 'value(core.project)')
 
 gcloud functions deploy cv-automation-api \
+    --gen2 \
     --trigger-http \
     --runtime=nodejs18 \
     --entry-point=app \
