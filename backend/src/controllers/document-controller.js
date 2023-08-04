@@ -9,6 +9,7 @@ module.exports = async (req, res) => {
 
     const [docError, docText] = await to(extractText({ file }));
 
+    //TODO: MOve errors to service
     if (docError) {
         console.log(docError);
         return res.sendStatus(500);
@@ -18,6 +19,7 @@ module.exports = async (req, res) => {
         organizeDataIntoDataStructure({ promptData: docText })
     );
 
+    //TODO: MOve errors to service
     if (aiError) {
         console.log(aiError);
         return res.sendStatus(500);
