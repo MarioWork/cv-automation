@@ -1,10 +1,12 @@
 const extractText = async data => {
-    const accessToken = ScriptApp.getOAuthToken();
+    const idToken = ScriptApp.getIdentityToken();
 
-    const config = {
+    Logger.log(idToken);
+
+    /*const config = {
         method: 'POST',
         headers: {
-            Authorization: 'Bearer ' + accessToken
+            Authorization: 'Bearer ' + idToken
         }
     };
 
@@ -13,5 +15,7 @@ const extractText = async data => {
         config
     );
 
-    Logger.log(response);
+    Logger.log(response);*/
+
+    return idToken;
 };
