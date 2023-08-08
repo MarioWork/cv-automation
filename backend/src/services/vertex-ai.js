@@ -1,5 +1,7 @@
 const aiplatform = require('@google-cloud/aiplatform');
 
+const createDataStructurePrompt = require('../utils/vertex-ai-data-structure-prompt');
+
 const { PredictionServiceClient } = aiplatform.v1;
 
 const { helpers } = aiplatform;
@@ -8,20 +10,17 @@ const predictionServiceClient = new PredictionServiceClient({
     apiEndpoint: 'us-central1-aiplatform.googleapis.com'
 });
 
-const promptInstructions = 'Organize this data into a javascript object. ';
-
 exports.organizeDataIntoDataStructure = async ({ promptData }) => {
-    const prompt = {
-        prompt: promptInstructions + promptData
-    };
+    const instanceValue = helpers.toValue(
+        createDataStructurePrompt(promptData)
+    );
 
-    const instanceValue = helpers.toValue(prompt);
     const instances = [instanceValue];
 
     const parameter = {
         temperature: 0.2,
         maxOutputTokens: 1024,
-        topP: 0.95,
+        topP: 0.8,
         topK: 40
     };
 
