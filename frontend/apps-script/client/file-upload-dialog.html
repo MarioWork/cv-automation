@@ -12,15 +12,18 @@
             <option value="fullstack">Fullstack</option>
         </select>
 
-        <input type="submit" value="submit">
+        <input name="submitButton" type="submit" value="submit">
     </form>
 
     <script>
         const form = document.querySelector('form');
         const fileInput = document.querySelector('input[name="fileInput"]');
+        const submitButton = document.querySelector('input[name="submitButton"]');
 
         form.addEventListener('submit', e => {
             e.preventDefault();
+
+            submitButton.disabled = true;
 
             const file = fileInput.files[0];
 
@@ -33,6 +36,8 @@
                 }
 
                 google.script.run
+                    .withSuccessHandler(() => submitButton.disabled = false)
+                    .withFailureHandler((err) => console.log(err))
                     .extractText(fileObj);
             }
 
