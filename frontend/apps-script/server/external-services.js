@@ -18,5 +18,27 @@ const extractText = async ({ encoded64File }) => {
 
     const data = JSON.parse(response.getContentText('UTF-8')).data;
 
-    return data;
+    displayDataOnDoc(data);
+};
+
+const displayDataOnDoc = data => {
+    const body = DocumentApp.getActiveDocument().getBody();
+
+    Object.keys(data).forEach(key => {
+        body.appendParagraph(key);
+
+        const dataValue = data[key];
+
+        if (Array.isArray(dataValue)) {
+            dataValue.forEach(value => displayDataOnDoc(dataValue));
+            return;
+        }
+
+        if (typeof dataValue === 'object') {
+            displayDataOnDoc(dataValue);
+            return;
+        }
+
+        body.appendParagraph(dataValue);
+    });
 };
