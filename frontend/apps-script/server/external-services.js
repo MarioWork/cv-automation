@@ -1,12 +1,13 @@
-const extractText = async data => {
+const extractText = async ({ encoded64File }) => {
     const idToken = ScriptApp.getIdentityToken();
 
-    Logger.log(idToken);
-
-    /*const config = {
+    const config = {
         method: 'POST',
         headers: {
             Authorization: 'Bearer ' + idToken
+        },
+        payload: {
+            file: encoded64File
         }
     };
 
@@ -15,7 +16,7 @@ const extractText = async data => {
         config
     );
 
-    Logger.log(response);*/
+    const data = JSON.parse(response.getContentText('UTF-8')).data;
 
-    return idToken;
+    return data;
 };
