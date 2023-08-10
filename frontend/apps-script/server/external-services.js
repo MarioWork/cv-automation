@@ -1,3 +1,5 @@
+import 'google-apps-script';
+
 const extractText = async ({ encoded64File }) => {
     const idToken = ScriptApp.getIdentityToken();
 
