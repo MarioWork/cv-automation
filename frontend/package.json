@@ -17,7 +17,7 @@
         "@google/clasp": "^2.4.2"
     },
     "devDependencies": {
-        "@types/google-apps-script": "^1.0.64",
+        "@types/google-apps-script": "^1.0.66",
         "eslint": "^8.45.0",
         "eslint-config-prettier": "^8.8.0",
         "eslint-plugin-json": "^3.1.0",
