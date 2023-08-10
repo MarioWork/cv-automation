@@ -11,6 +11,7 @@
 - [ ] Organize backend error handling;
 - [ ] Catch errors on frontend;
 - [ ] Create CI/CD
+- [ ] Research Google Docs
 
 <hr>
 
