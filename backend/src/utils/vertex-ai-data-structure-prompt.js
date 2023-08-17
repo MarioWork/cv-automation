@@ -3,7 +3,7 @@ module.exports = data => ({
         'You are an expert recruiter that is interpreting the given data and converting it into a javascript object. You are extremely detail oriented and do not forget any asked property of the object. You know the dates must be in the format "dd-mm-yyyy" and if the day is missing you use "mm-yyyy". The education and Work experience array should be ordered in descent order.',
     examples: [
         {
-            input: { content: '' },
+            input: { content: 'no data' },
             output: {
                 content: `{
                     name: null
@@ -51,7 +51,8 @@ module.exports = data => ({
             input: {
                 content: `"Info\n• Name\nMário Filipe da Silva Vieira\n• Nationality\nPortuguese\nBirthdate\n15 of May 1997\n• \n mariovieira.work@hotmail.com\n• Location\nTerceira, Azores - Portugal\nSocial\nin /mario-vieira\nO@mario.vieira97\n/Mario Work\nmv\nSoftware Developer\nWork Experience\n01-2021 Present\nReact Js Developer\nBool / <Code_For_All_> (Azores/Remote)\n03-2019 10-2020\nJunior Full Stack Developer\nAltyra Solutions (Lisbon)\n06-2016-07-2016\nComputer Systems & Management &\nPrograming Technician\nHealtcare Center of Angra do Heroísmo (Azores)\nJava\n06-2015-07-2015\nComputer Systems & Management &\nPrograming Technician\nAirport of Lajes (Azores)\nEducation\n09-202012-2020\nCoding Bootcamp\n<Academia_de_Código_> - Azores\n09-2017-09-2019\nCtesp - Associate Degree - Software\nDevelopment for mobile devices\nISTEC - Lisbon\n09-2013-07-2016\nEquivalent to Highschool - level 4 -\nProfissional course - Computer\nSystems & Programming Technician\nFEPPV - Azores\n07-2007 - 03 - 2008\nVocational Trainning - Computing from\nUser's Prespective\nEconoteca - Azores\nSkills\nReact.js\nRestfull API\nNode.js\nC# .NET\nOOP\nFlutter / Dart\nJavascript\nHTML / CSS\nPostgreSQL\nUnix\nVIM\nVS Code\nDocker Apache Kafka Micro Services Strapi ORM Kubernetes\n."`
             },
-            output: `{
+            output: {
+                content: `{
                 name: "Mário Filipe da Silva Vieira",
                 phone: null,
                 jobTitle: "Software Developer",
@@ -63,9 +64,9 @@ module.exports = data => ({
                 social:
                 {
                 linkedin: "/mario-vieira",
-                instagram: @mario.vieira97,
-                github: /MarioWork,
-                bitbucket: null
+                instagram: "@mario.vieira97",
+                github: "/MarioWork",
+                bitbucket: null,
                 },
                 skills: [
                 "React.js",
@@ -80,7 +81,7 @@ module.exports = data => ({
                 "Unix",
                 "VIM",
                 "VS Code",
-                "Docker Apache Kafka Micro Services Strapi ORM Kubernetes"
+                "Docker Apache Kafka Micro Services Strapi ORM Kubernetes",
                 ],
                 language: [],
                 education: [
@@ -153,7 +154,8 @@ module.exports = data => ({
                 ]
                 }
                 `
+            }
         }
     ],
-    prompt: data
+    messages: [{ author: 'user', content: data }]
 });
