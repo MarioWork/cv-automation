@@ -11,9 +11,9 @@ const predictionServiceClient = new PredictionServiceClient({
 });
 
 exports.organizeDataIntoDataStructure = async ({ promptData }) => {
-    const instanceValue = helpers.toValue(
-        createDataStructurePrompt(promptData)
-    );
+    const prompt = createDataStructurePrompt(promptData);
+
+    const instanceValue = helpers.toValue(prompt);
 
     const instances = [instanceValue];
 
@@ -34,12 +34,9 @@ exports.organizeDataIntoDataStructure = async ({ promptData }) => {
 
     const response = await predictionServiceClient.predict(request);
 
-    const predictionStr =
-        response[0].predictions[0].structValue.fields.content.stringValue;
+    const data =
+        response[0].predictions[0].structValue.fields.candidates.listValue
+            .values[0].structValue.fields.content.stringValue;
 
-    const predictionStrCleaned = predictionStr.replace(/\r\n|\n|'|`/g, '');
-
-    return {
-        data: JSON.parse(predictionStrCleaned)
-    };
+    return { data };
 };
