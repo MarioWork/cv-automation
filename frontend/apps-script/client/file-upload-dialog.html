@@ -37,7 +37,7 @@
 
                 google.script.run
                     .withSuccessHandler(() => submitButton.disabled = false)
-                    .withFailureHandler((err) => console.log(err))
+                    .withFailureHandler((err) => console.log(err.message))
                     .extractText(fileObj);
             }
 
