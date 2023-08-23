@@ -155,6 +155,85 @@ module.exports = data => ({
                 }
                 `
             }
+        },
+        {
+            input: {
+                content:
+                    'Sexo: Masculino\nData de nascimento: 31/05/1999\nNacionalidade: Portuguesa\nMorada: Alvalade, Lisboa\nCarta de Condução: A1, B1, B\nPERFIL\nChamo-me Tomás Maia, tenho 22 anos e\nsou licenciado em Gestão de Recursos\nHumanos, na Universidade Lusófona de\nLisboa. Considero-me uma pessoa de\nfortes relações, com um forte espírito de\nequipa e apaixonado por gestão e\ntecnologia.\nCONTACTOS\nin\n918105906\ntomastrmaia@gmail.com\nCOMPETÊNCIAS\nLINGUÍSTICAS\n料\nLíngua materna\nIntermédio\nIniciante\nTOMÁS MAIA\nEDUCAÇÃO\nErasmus +, Gestão de Recursos Humanos | Univerza v Mariboru\nsetembro 2020 - fevereiro 2021\nLicenciatura em Gestão de Recursos Humanos | Universidade Lusófona\nsetembro 2018 - julho 2021\nCiências Socioeconómicas | Escola Secundária do Cartaxo\n2014 - 2018\nEXPERIÊNCIA PROFISSIONAL\nRecrutamento, Gestão de Consultores e Processos de IT- Oskon.Tech\nfevereiro 2021 - Ao momento\nRecrutamento e seleção, formação e integração - ERA ALA/ALV/C. OU\nagosto 2020 - setembro 2020\nSecretariado, base de dados e gestão de stock - Hidro Lazer\njulho 2019 - setembro 2019\nCOMPETÊNCIAS PESSOAIS\nBoa comunicação\nEspírito de equipa\nResponsabilidade\nProatividade\nFácil adaptação\nCriatividade\nCOMPETÊNCIAS INFORMÁTICAS\nOffice 365\nPlataformas de Recrutamento\nSoftware CRM\nPlataformas de interação e negócios\nCertificações e Cursos adicionais\nFundamentos de Planeamento estratégico - Linkedin\nFevereiro 2021\nBurnout: Esgotamento no trabalho - Linkedin\nFevereiro 2021\nDO'
+            },
+            output: {
+                content: `{
+                "name": "Tomás Maia",
+                "phone": "918105906",
+                "jobTitle": null,
+                "description": null,
+                "location": "Alvalade, Lisbon",
+                "birthdate": "31/05/1999",
+                "email": "tomastrmaia@gmail.com",
+                "nationality": "Portuguese",
+                "social": {
+                  "linkedin": null,
+                  "instagram": null,
+                  "twitter": null,
+                  "github": null,
+                  "bitbucket": null
+                },
+                "skills": ["Good Comunication", "Team spirit", "Creativity", "Reponsible", "Adapts easily", "English", "Spanish", "Office 365", "Recruitment Platforms", "CRM Software", "Business Interaction Platforms"],
+                "language": ["Portuguese"],
+                "education": [
+                  {
+                    "startingDate": "01-09-2020",
+                    "finishDate": "01-02-2021",
+                    "title": "Erasmus +, Human Resources Management",
+                    "description": null,
+                    "institution": "Univerza v Mariboru",
+                    "location": "Maribor"
+                  },
+                  {
+                    "startingDate": "01-09-2018",
+                    "finishDate": "01-07-2021",
+                    "title": "Bachelor's degree in Human Resources Management",
+                    "description": null,
+                    "institution": "Universidade Lusófona",
+                    "location": "Lisbon"
+                  },
+                  {
+                    "startingDate": "2014",
+                    "finishDate": "2018",
+                    "title": "Socioeconomic Sciences",
+                    "description": null,
+                    "institution": "Escola Secundária do Cartaxo",
+                    "location": "Cartaxo"
+                  }
+                ],
+                "workExperience": [
+                  {
+                    "startingDate": "01-02-2021",
+                    "finishDate": "Present",
+                    "title": "Recruitment, Consultancy Management and IT Processes",
+                    "description": null,
+                    "company": "Oskon.Tech",
+                    "location": "Lisbon"
+                  },
+                  {
+                    "startingDate": "01-08-2020",
+                    "finishDate": "01-09-2020",
+                    "title": "Recruitment and Selection, Training and Integration",
+                    "description": null,
+                    "company": "ERA ALA/ALV/C. OU",
+                    "location": "Lisbon"
+                  },
+                  {
+                    "startingDate": "01-07-2019",
+                    "finishDate": "01-09-2019",
+                    "title": "Secretariat, Database and Stock Management",
+                    "description": null,
+                    "company": "Hidro Lazer",
+                    "location": "Lisbon"
+                  }
+                ]
+              }`
+            }
         }
     ],
     messages: [{ author: 'user', content: data }]
