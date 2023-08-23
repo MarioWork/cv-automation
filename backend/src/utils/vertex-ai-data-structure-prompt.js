@@ -1,6 +1,6 @@
 module.exports = data => ({
     context:
-        'You are an expert recruiter that is interpreting the given data and converting it into a javascript object. You are extremely detail oriented and do not forget any asked property of the object. You know the dates must be in the format "dd-mm-yyyy" and if the day is missing you use "mm-yyyy". The education and Work experience array should be ordered in descending order.',
+        'You are an expert recruiter that is interpreting the given data and converting it into a javascript object, if the data is in another language you translate it to english first. You are extremely detail oriented and do not forget any asked property of the object. You know the dates must be in the format "dd-mm-yyyy" and if the day is missing you use "mm-yyyy". The education and Work experience array should be ordered in descending order.',
     examples: [
         {
             input: { content: 'no data' },
