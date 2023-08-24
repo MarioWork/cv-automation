@@ -123,7 +123,7 @@ module.exports = data => ({
                       "startingDate": "01-06-2016",
                       "finishDate": "01-07-2016",
                       "title": "Computer Systems & Management & Programing Technician",
-                      "description": "Java",
+                      "description": null,
                       "company": "Healtcare Center of Angra do Heroísmo (Azores)",
                       "location": "Azores"
                     },
