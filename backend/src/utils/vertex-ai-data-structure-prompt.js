@@ -234,6 +234,85 @@ module.exports = data => ({
                 ]
               }`
             }
+        },
+        {
+            input: {
+                content: `SUMMARY\nIT Recruiter and HR Technician with a\nbackground in recruitment and human\nresources management. Skilled in attracting\nand selecting top talent, utilizing effective\nrecruitment strategies, and assessing\ntechnical skills and cultural fit. Strong\nrelationship-building abilities with candidates\nand hiring managers. Knowledgeable in HR\nprocesses, including contract management\nand employee engagement. Excellent\norganizational and communication skills,\nthrive in fast-paced environments.\nCONTACTS\n+351 933 612 427\nfernandesfprodrigo@gmail.com\nRua D.Mafalda nº11 Belas,\n4°esq\nEDUCATION\n2019-2023\nUniversidade Lusófona de\nHumanidades e Tecnologias -\nLisbon, Portugal\nPostgraduate Degree in Human\nResource Management - In the\nPerspective of Management with\nPeople\n2018 - 2021\nUniversidade Lusófona de\nHumanidades e Tecnologias -\nLisbon, Portugal\nDegree in Tourism\nRODRIGO\nFERNANDES\nEXPERIENCE\nIT Recruiter, 09/2022 - Current\nOskon.Tech - Lisbon, Portugal\n• Source, identify, and engage qualified IT\nprofessionals for various job openings;\n• Conduct thorough screening and assessment\nof candidates' technical skills and\nqualifications;\n• Use various recruitment platforms and tools\nto identify potential candidates;\nCollaborate with hiring managers to\nunderstand job requirements and develop\neffective recruitment strategies;\n• Conduct interviews and evaluate candidates'\ncultural fit within the organization;\n• Build and maintain relationships with\ncandidates and provide a positive candidate\nexperience throughout the recruitment\nprocess;\n• Assist in the negotiation and offer process,\nensuring smooth onboarding for successful\ncandidates;\nStay updated on industry trends and best\npractices in IT recruitment;\n• Maintain accurate and up-to-date candidate\nand job-related information in the recruitment\ndatabase;\n• Collaborate with the HR team on various HR\nprocesses, including contract management\nand employee engagement initiatives.\n●\nSKILLS\n• Relationship building\n• Time Management\n• Computer Skills\n• Communication Skills\nEmpathy\n• Teamwork\nPERSONAL\nEXPERIENCES\nVisited Countries:\n• Spain\n• France\n• United Kingdom\n• Germany\n• Hungary\n• Italy\n• Cape Verde\nIT Recruiter, 04/2022 - 09/2022\nNext Engineering - Lisbon, Portugal\n• Conducted interviews with IT candidates to\nassess their technical skills and qualifications;\n• Utilized various sourcing methods to identify\nand attract top IT talent;\n• Conducted thorough candidate screenings\nand assessments to evaluate their suitability\nfor specific job requirements;\n• Collaborated with hiring managers to\nunderstand their needs and provide them with\nqualified candidates;\n• Utilized applicant tracking systems and other\nrecruitment tools to streamline the candidate\nselection process;\n• Provided constructive feedback to candidates\nafter interviews to help them improve their\nskills;\n●\n●\nDeveloped and maintained relationships with\ncandidates to establish a talent pipeline for\nfuture positions;\nActively researched and implemented\ninnovative recruitment strategies to attract\nhighly skilled IT professionals.\nSALES ATTENDANT - 07/2018 - 04/2022\nZARA, INDITEX - Lisbon, Portugal\nCustomer service;\n• Customer relationship management;\n• Sales;\n• Payments (Cashier);\n• Warehouse organisation and maintenance.\n`
+            },
+            output: {
+                content: `{
+              "name":"Rodrigo Fernandes",
+              "phone":"+351 933 612 427",
+              "jobTitle":"IT Recruiter",
+              "description":"IT Recruiter and HR Technician with a background in recruitment and human resources management. Skilled in attracting and selecting top talent, utilizing effective recruitment strategies, and assessing technical skills and cultural fit. Strong relationship-building abilities with candidates and hiring managers. Knowledgeable in HR processes, including contract management and employee engagement. Excellent organizational and communication skills, thrive in fast-paced environments.",
+              "location":"Lisbon, Portugal",
+              "birthdate":null,
+              "email":"fernandesfprodrigo@gmail.com",
+              "nationality":"Portuguese",
+              "social":{
+                 "linkedin":null,
+                 "instagram":null,
+                 "twitter":null,
+                 "github":null,
+                 "bitbucket":null
+              },
+              "skills":[
+                 "Relationship building",
+                 "Time Management",
+                 "Computer Skills",
+                 "Communication Skills",
+                 "Empathy",
+                 "Teamwork"
+              ],
+              "language":[
+
+              ],
+              "education":[
+                 {
+                    "startingDate":"2019",
+                    "finishDate":"2023",
+                    "title":"Postgraduate Degree in Human Resource Management - In the Perspective of Management with People",
+                    "description":null,
+                    "institution":"Universidade Lusófona de Humanidades e Tecnologias",
+                    "location":"Lisbon, Portugal"
+                 },
+                 {
+                    "startingDate":"2018",
+                    "finishDate":"2021",
+                    "title":"Degree in Tourism",
+                    "description":null,
+                    "institution":"Universidade Lusófona de Humanidades e Tecnologias",
+                    "location":"Lisbon, Portugal"
+                 }
+              ],
+              "workExperience":[
+                 {
+                    "startingDate":"01-09-2022",
+                    "finishDate":"Current",
+                    "title":"IT Recruiter",
+                    "description":"Source, identify, and engage qualified IT professionals for various job openings; Conduct thorough screening and assessment of candidates' technical skills and qualifications; Use various recruitment platforms and tools to identify potential candidates; Collaborate with hiring managers to understand job requirements and develop effective recruitment strategies; Conduct interviews and evaluate candidates' cultural fit within the organization; Build and maintain relationships with candidates and provide a positive candidate experience throughout the recruitment process; Assist in the negotiation and offer process, ensuring smooth onboarding for successful candidates; Stay updated on industry trends and best practices in IT recruitment; Maintain accurate and up-to-date candidate and job-related information in the recruitment database; Collaborate with the HR team on various HR processes, including contract management and employee engagement initiatives.",
+                    "company":"Oskon.Tech",
+                    "location":"Lisbon, Portugal"
+                 },
+                 {
+                    "startingDate":"01-04-2022",
+                    "finishDate":"01-09-2022",
+                    "title":"IT Recruiter",
+                    "description":"Conducted interviews with IT candidates to assess their technical skills and qualifications; Utilized various sourcing methods to identify and attract top IT talent; Conducted thorough candidate screenings and assessments to evaluate their suitability for specific job requirements; Collaborated with hiring managers to understand their needs and provide them with qualified candidates; Utilized applicant tracking systems and other recruitment tools to streamline the candidate selection process; Provided constructive feedback to candidates after interviews to help them improve their skills; Developed and maintained relationships with candidates to establish a talent pipeline for future positions; Actively researched and implemented innovative recruitment strategies to attract highly skilled IT professionals.",
+                    "company":"Next Engineering",
+                    "location":"Lisbon, Portugal"
+                 },
+                 {
+                    "startingDate":"01-07-2018",
+                    "finishDate":"01-04-2022",
+                    "title":"Sales Attendant",
+                    "description":"Customer service; Customer relationship management; Sales; Payments (Cashier); Warehouse organisation and maintenance.",
+                    "company":"ZARA, INDITEX",
+                    "location":"Lisbon, Portugal"
+                 }
+              ]
+           }`
+            }
         }
     ],
     messages: [{ author: 'user', content: data }]
