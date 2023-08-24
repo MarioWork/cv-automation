@@ -6,45 +6,44 @@ module.exports = data => ({
             input: { content: 'no data' },
             output: {
                 content: `{
-                    name: null,
-                    phone: null,
-                    jobTitle: null,
-                    description: null,
-                    location: null,
-                    birthdate: null,
-                    email: null,
-                    nationality: null,
-                    social:
+                  "name": null,
+                  "phone": null,
+                  "jobTitle": null,
+                  "description": null,
+                  "location": null,
+                  "birthdate": null,
+                  "email": null,
+                  "nationality": null,
+                  "social": {
+                    "linkedin": null,
+                    "instagram": null,
+                    "twitter": null,
+                    "github": null,
+                    "bitbucket": null
+                  },
+                  "skills": [],
+                  "language": [],
+                  "education": [
                     {
-                    linkedin: null,
-                    instagram: null,
-                    twitter: null,
-                    github: null,
-                    bitbucket: null
-                    },
-                    skills: [],
-                    language: [],
-                    education: [
-                    {
-                    startingDate: null,
-                    finishDate: null,
-                    title: null,
-                    description: null,
-                    institution: null,
-                    location: null,
+                      "startingDate": null,
+                      "finishDate": null,
+                      "title": null,
+                      "description": null,
+                      "institution": null,
+                      "location": null
                     }
-                    ],
-                    workExperience: [
+                  ],
+                  "workExperience": [
                     {
-                    startingDate: null,
-                    finishDate: null,
-                    title: null,
-                    description: null,
-                    company: null,
-                    location: null,
+                      "startingDate": null,
+                      "finishDate": null,
+                      "title": null,
+                      "description": null,
+                      "company": null,
+                      "location": null
                     }
-                    ]
-                    }`
+                  ]
+                }`
             }
         },
         {
@@ -53,107 +52,91 @@ module.exports = data => ({
             },
             output: {
                 content: `{
-                name: "Mário Filipe da Silva Vieira",
-                phone: null,
-                jobTitle: "Software Developer",
-                description: null,
-                location: "Terceira, Azores - Portugal",
-                birthdate: "15 of May 1997",
-                email: "mariovieira.work@hotmail.com",
-                nationality: "Portuguese",
-                social:
-                {
-                linkedin: "/mario-vieira",
-                instagram: "@mario.vieira97",
-                github: "/MarioWork",
-                bitbucket: null,
-                },
-                skills: [
-                "React.js",
-                "Restfull API",
-                "Node.js",
-                "C# .NET",
-                "OOP",
-                "Flutter / Dart",
-                "Javascript",
-                "HTML / CSS",
-                "PostgreSQL",
-                "Unix",
-                "VIM",
-                "VS Code",
-                "Docker Apache Kafka Micro Services Strapi ORM Kubernetes",
-                ],
-                language: [],
-                education: [
-                {
-                startingDate: "01-09-2020",
-                finishDate: "01-12-2020",
-                title: "Coding Bootcamp",
-                description: null,
-                institution: "<Academia_de_Código_> - Azores",
-                location: "Azores"
-                },
-                {
-                startingDate: "01-09-2017",
-                finishDate: "01-09-2019",
-                title: "Ctesp - Associate Degree - Software Development for mobile devices",
-                description: null,
-                institution: "ISTEC - Lisbon",
-                location: "Lisbon"
-                },
-                {
-                startingDate: "01-09-2013",
-                finishDate: "01-07-2016",
-                title: "Equivalent to Highschool - level 4 - Professional course - Computer Systems & Programming Technician",
-                description: null,
-                institution: "FEPPV - Azores",
-                location: "Azores"
-                },
-                {
-                startingDate: "01-07-2007",
-                finishDate: "01-03-2008",
-                title: "Vocational Trainning - Computing from User's Prespective",
-                description: null,
-                institution: "Econoteca - Azores",
-                location: "Azores"
-                }
-                ],
-                workExperience: [
-                {
-                startingDate: "01-01-2021",
-                finishDate: "Present",
-                title: "React Js Developer",
-                description: null,
-                company: "Bool / <Code_For_All_> (Azores/Remote)",
-                location: "Azores/Remote"
-                },
-                {
-                startingDate: "01-03-2019",
-                finishDate: "10-2020",
-                title: "Junior Full Stack Developer",
-                description: null,
-                company: "Altyra Solutions (Lisbon)",
-                location: "Lisbon"
-                },
-                {
-                startingDate: "01-06-2016",
-                finishDate: "01-07-2016",
-                title: "Computer Systems & Management & Programing Technician",
-                description: "Java",
-                company: "Healtcare Center of Angra do Heroísmo (Azores)",
-                location: "Azores"
-                },
-                {
-                startingDate: "01-06-2015",
-                finishDate: "01-07-2015",
-                title: "Computer Systems & Management & Programing Technician",
-                description: null,
-                company: "Airport of Lajes (Azores)",
-                location: "Azores"
-                }
-                ]
-                }
-                `
+                  "name": "Mário Filipe da Silva Vieira",
+                  "phone": null,
+                  "jobTitle": "Software Developer",
+                  "description": null,
+                  "location": "Terceira, Azores - Portugal",
+                  "birthdate": "15 of May 1997",
+                  "email": "mariovieira.work@hotmail.com",
+                  "nationality": "Portuguese",
+                  "social": {
+                    "linkedin": "/mario-vieira",
+                    "instagram": "@mario.vieira97",
+                    "github": "/MarioWork",
+                    "bitbucket": null
+                  },
+                  "skills": ["React.js", "Restfull API", "Node.js", "C# .NET", "OOP", "Flutter / Dart", "Javascript", "HTML / CSS", "PostgreSQL", "Unix", "VIM", "VS Code", "Docker Apache Kafka Micro Services Strapi ORM Kubernetes"],
+                  "language": [],
+                  "education": [
+                    {
+                      "startingDate": "01-09-2020",
+                      "finishDate": "01-12-2020",
+                      "title": "Coding Bootcamp",
+                      "description": null,
+                      "institution": "<Academia_de_Código_> - Azores",
+                      "location": "Azores"
+                    },
+                    {
+                      "startingDate": "01-09-2017",
+                      "finishDate": "01-09-2019",
+                      "title": "Ctesp - Associate Degree - Software Development for mobile devices",
+                      "description": null,
+                      "institution": "ISTEC - Lisbon",
+                      "location": "Lisbon"
+                    },
+                    {
+                      "startingDate": "01-09-2013",
+                      "finishDate": "01-07-2016",
+                      "title": "Equivalent to Highschool - level 4 - Professional course - Computer Systems & Programming Technician",
+                      "description": null,
+                      "institution": "FEPPV - Azores",
+                      "location": "Azores"
+                    },
+                    {
+                      "startingDate": "01-07-2007",
+                      "finishDate": "01-03-2008",
+                      "title": "Vocational Trainning - Computing from User's Prespective",
+                      "description": null,
+                      "institution": "Econoteca - Azores",
+                      "location": "Azores"
+                    }
+                  ],
+                  "workExperience": [
+                    {
+                      "startingDate": "01-01-2021",
+                      "finishDate": "Present",
+                      "title": "React Js Developer",
+                      "description": null,
+                      "company": "Bool / <Code_For_All_> (Azores/Remote)",
+                      "location": "Azores/Remote"
+                    },
+                    {
+                      "startingDate": "01-03-2019",
+                      "finishDate": "10-2020",
+                      "title": "Junior Full Stack Developer",
+                      "description": null,
+                      "company": "Altyra Solutions (Lisbon)",
+                      "location": "Lisbon"
+                    },
+                    {
+                      "startingDate": "01-06-2016",
+                      "finishDate": "01-07-2016",
+                      "title": "Computer Systems & Management & Programing Technician",
+                      "description": "Java",
+                      "company": "Healtcare Center of Angra do Heroísmo (Azores)",
+                      "location": "Azores"
+                    },
+                    {
+                      "startingDate": "01-06-2015",
+                      "finishDate": "01-07-2015",
+                      "title": "Computer Systems & Management & Programing Technician",
+                      "description": null,
+                      "company": "Airport of Lajes (Azores)",
+                      "location": "Azores"
+                    }
+                  ]
+                }`
             }
         },
         {
