@@ -1,12 +1,12 @@
 module.exports = data => ({
     context:
-        'You are an expert recruiter that is interpreting the given data and converting it into a javascript object, if the data is in another language you translate it to english first. You are extremely detail oriented and do not forget any asked property of the object. You know the dates must be in the format "dd-mm-yyyy" and if the day is missing you use "mm-yyyy". The education and Work experience array should be ordered in descending order.',
+        'You are an expert recruiter that is interpreting the given data and converting it into a javascript object, if the data is in another language you translate it to english first then you convert it to a javascript object. You are extremely detail oriented and do not forget any asked property of the object. You know the dates must be in the format "dd-mm-yyyy" and if the day is missing you use "mm-yyyy". The education and Work experience array should be ordered in descending order.',
     examples: [
         {
             input: { content: 'no data' },
             output: {
                 content: `{
-                    name: null
+                    name: null,
                     phone: null,
                     jobTitle: null,
                     description: null,
@@ -86,32 +86,32 @@ module.exports = data => ({
                 language: [],
                 education: [
                 {
-                startingDate: "09-2020",
-                finishDate: "12-2020",
+                startingDate: "01-09-2020",
+                finishDate: "01-12-2020",
                 title: "Coding Bootcamp",
                 description: null,
                 institution: "<Academia_de_Código_> - Azores",
                 location: "Azores"
                 },
                 {
-                startingDate: "09-2017",
-                finishDate: "09-2019",
+                startingDate: "01-09-2017",
+                finishDate: "01-09-2019",
                 title: "Ctesp - Associate Degree - Software Development for mobile devices",
                 description: null,
                 institution: "ISTEC - Lisbon",
                 location: "Lisbon"
                 },
                 {
-                startingDate: "09-2013",
-                finishDate: "07-2016",
+                startingDate: "01-09-2013",
+                finishDate: "01-07-2016",
                 title: "Equivalent to Highschool - level 4 - Professional course - Computer Systems & Programming Technician",
                 description: null,
                 institution: "FEPPV - Azores",
                 location: "Azores"
                 },
                 {
-                startingDate: "07-2007",
-                finishDate: "03-2008",
+                startingDate: "01-07-2007",
+                finishDate: "01-03-2008",
                 title: "Vocational Trainning - Computing from User's Prespective",
                 description: null,
                 institution: "Econoteca - Azores",
@@ -120,7 +120,7 @@ module.exports = data => ({
                 ],
                 workExperience: [
                 {
-                startingDate: "01-2021",
+                startingDate: "01-01-2021",
                 finishDate: "Present",
                 title: "React Js Developer",
                 description: null,
@@ -128,7 +128,7 @@ module.exports = data => ({
                 location: "Azores/Remote"
                 },
                 {
-                startingDate: "03-2019",
+                startingDate: "01-03-2019",
                 finishDate: "10-2020",
                 title: "Junior Full Stack Developer",
                 description: null,
@@ -136,16 +136,16 @@ module.exports = data => ({
                 location: "Lisbon"
                 },
                 {
-                startingDate: "06-2016",
-                finishDate: "07-2016",
+                startingDate: "01-06-2016",
+                finishDate: "01-07-2016",
                 title: "Computer Systems & Management & Programing Technician",
                 description: "Java",
                 company: "Healtcare Center of Angra do Heroísmo (Azores)",
                 location: "Azores"
                 },
                 {
-                startingDate: "06-2015",
-                finishDate: "07-2015",
+                startingDate: "01-06-2015",
+                finishDate: "01-07-2015",
                 title: "Computer Systems & Management & Programing Technician",
                 description: null,
                 company: "Airport of Lajes (Azores)",
