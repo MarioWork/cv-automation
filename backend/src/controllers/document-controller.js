@@ -7,7 +7,11 @@ module.exports = async (req, res) => {
 
     if (!file) return res.status(400).send('64BaseEncoded file missing.');
 
+    console.log('Extracting text...');
+
     const [docError, docText] = await to(extractText({ file }));
+
+    console.log('Finished Extracting text...');
 
     //TODO: MOve errors to service
     if (docError) {
@@ -15,9 +19,13 @@ module.exports = async (req, res) => {
         return res.sendStatus(500);
     }
 
+    console.log('Creating data structure...');
+
     const [aiError, data] = await to(
         organizeDataIntoDataStructure({ promptData: docText })
     );
+
+    console.log('Finished Creating data structure...');
 
     //TODO: MOve errors to service
     if (aiError) {
@@ -25,5 +33,5 @@ module.exports = async (req, res) => {
         return res.sendStatus(500);
     }
 
-    return res.send(data);
+    return res.send({ data: data.replace(/(\r\n|\n|\r)/gm, '') });
 };
