@@ -10,7 +10,7 @@
         "gpull": "clasp pull",
         "gpush": "clasp push",
         "gstart": "clasp push --watch",
-        "startBundle": "parcel watch ./src/index.html"
+        "build": "parcel build ./src/index.html --dist-dir ./apps-script/client"
     },
     "author": "",
     "license": "ISC",
