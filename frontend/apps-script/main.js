@@ -25,9 +25,7 @@ function onOpen(e) {
 }
 
 function showUploadFileDialog() {
-    const html = HtmlService.createHtmlOutputFromFile(
-        'client/file-upload-dialog'
-    )
+    const html = HtmlService.createHtmlOutputFromFile('client/index.html')
         .setWidth(400)
         .setHeight(300);
 

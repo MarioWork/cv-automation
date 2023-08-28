@@ -1,4 +1,5 @@
-import 'google-apps-script';
+//TODO: Find a way for this import not interfere with google apps script
+//import 'google-apps-script';
 
 const extractText = async ({ encoded64File }) => {
     const idToken = ScriptApp.getIdentityToken();
