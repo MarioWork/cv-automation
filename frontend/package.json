@@ -10,9 +10,10 @@
         "gpull": "clasp pull",
         "gpush": "clasp push",
         "gstart": "clasp push --watch",
-        "build": "parcel build ./src/index.html --dist-dir ./apps-script/client"
+        "build": "parcel build ./src/client/**/*.html --dist-dir ./apps-script/ && node util.js && clasp push",
+        "dev": "nodemon --watch ./src/client --watch ./src/server --exec \"npm run build\" --ext js,html,css,vue"
     },
-    "author": "",
+    "author": "Mario Vieira",
     "license": "ISC",
     "devDependencies": {
         "@google/clasp": "^2.4.2",
@@ -22,6 +23,7 @@
         "eslint-config-prettier": "^8.8.0",
         "eslint-plugin-json": "^3.1.0",
         "eslint-plugin-prettier": "^5.0.0",
+        "nodemon": "^3.0.1",
         "parcel": "^2.9.3",
         "prettier": "^3.0.0"
     },
