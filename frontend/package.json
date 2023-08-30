@@ -10,7 +10,7 @@
         "gpull": "clasp pull",
         "gpush": "clasp push",
         "gstart": "clasp push --watch",
-        "build": "parcel build --no-cache ./src/client/**/*.html --dist-dir ./apps-script/ && node util.js && clasp push",
+        "build": "parcel build --no-source-maps --no-cache ./src/client/**/*.html --dist-dir ./apps-script/ --public-url ./  && node util.js && clasp push",
         "dev": "nodemon --watch ./src/client --watch ./src/server --exec \"npm run build\" --ext js,html,css,vue"
     },
     "author": "Mario Vieira",
