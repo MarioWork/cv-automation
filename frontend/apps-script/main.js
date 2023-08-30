@@ -29,7 +29,7 @@ function showUploadFileDialog() {
         .setWidth(400)
         .setHeight(300);
 
-    DocumentApp.getUi().showModalDialog(html, 'Upload the CV');
+    DocumentApp.getUi().showModalDialog(html, 'CV Automation');
 }
 
 function enhanceCVSidebar() {}
