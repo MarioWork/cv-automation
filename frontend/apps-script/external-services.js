@@ -45,3 +45,5 @@ const displayDataOnDoc = data => {
         body.appendParagraph(dataValue);
     });
 };
+
+const test = () => 'Hello from the backend';
