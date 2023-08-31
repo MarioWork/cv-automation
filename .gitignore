@@ -4,3 +4,4 @@ node_modules
 frontend/apps-script/.clasp.json
 frontend/.clasp.json
 frontend/.parcel-cache
+frontend/apps-script/*
