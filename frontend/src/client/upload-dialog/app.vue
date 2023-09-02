@@ -1,44 +1,10 @@
 <template>
-    <main
-        style="
-            width: 100vw;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 10px;
-        "
-    >
-        <button
-            style="
-                width: 200px;
-                height: 200px;
-                background-color: transparent;
-                border-radius: 20px;
-                border-style: dashed;
-                border-color: red;
-                cursor: pointer;
-            "
-            @click="openFileExplorer"
-        >
+    <main>
+        <button class="upload-button" @click="openFileExplorer">
             Choose File
         </button>
-
-        <button
-            style="
-                width: 200px;
-                background-color: red;
-                color: white;
-                padding: 15px;
-                border: none;
-                border-radius: 20px;
-                cursor: pointer;
-            "
-        >
-            Process
-        </button>
-
-        <input name="file" style="display: none" type="file" ref="fileInput" />
+        <button class="process-button">Process</button>
+        <input name="file" class="hide" type="file" ref="fileInput" />
     </main>
 </template>
 
