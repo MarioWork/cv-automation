@@ -1,3 +1,9 @@
+:root {
+    --main-color: rgb(2, 75, 227);
+    --accent-color: rgb(216, 53, 236);
+    --upload-background-color: rgba(2, 75, 227, 0.3);
+}
+
 main {
     width: 100vw;
     height: 100vh;
@@ -8,23 +14,37 @@ main {
 }
 
 .upload-button {
-    width: 200px;
+    width: 400px;
     height: 200px;
-    background-color: transparent;
+    background-color: var(--upload-background-color);
     border-radius: 20px;
     border-style: dashed;
-    border-color: red;
+    border-width: 2px;
+    border-color: var(--accent-color);
+    color: white;
+}
+
+.upload-button-action-text {
     cursor: pointer;
+    color: var(--accent-color);
+    font-weight: bold;
 }
 
 .process-button {
     width: 200px;
-    background-color: red;
-    color: white;
+    color: var(--accent-color);
+    background-color: transparent;
     padding: 15px;
-    border: none;
-    border-radius: 20px;
     cursor: pointer;
+    border-radius: 15px;
+    border: 2px var(--accent-color) solid;
+    box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.1);
+}
+
+.process-button:hover {
+    background-color: var(--accent-color);
+    color: white;
+    box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.2);
 }
 
 .hide {

@@ -1,10 +1,17 @@
 <template>
     <main>
         <button class="upload-button" @click="openFileExplorer">
-            Choose File
+            <span class="upload-button-action-text">Choose a file</span> or drag
+            it here.
         </button>
-        <button class="process-button">Process</button>
-        <input name="file" class="hide" type="file" ref="fileInput" />
+        <button class="process-button" @click="processCv">Process</button>
+        <input
+            name="file"
+            class="hide"
+            type="file"
+            accept="application/pdf"
+            ref="fileInput"
+        />
     </main>
 </template>
 
