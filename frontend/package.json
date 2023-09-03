@@ -10,13 +10,15 @@
         "gpull": "clasp pull",
         "gpush": "clasp push",
         "gstart": "clasp push --watch",
-        "build": "parcel build --no-source-maps --no-cache ./src/client/**/*.html --dist-dir ./apps-script/ --public-url ./  && node util.js && clasp push",
-        "dev": "nodemon --watch ./src/client --watch ./src/server --exec \"npm run build\" --ext js,html,css,vue"
+        "build-dev": "parcel build  --no-cache ./src/client/**/*.html --dist-dir ./apps-script/ --public-url ./  && node util.js && clasp push",
+        "build-prod": "parcel build  --no-cache --no-source-maps ./src/client/**/*.html --dist-dir ./apps-script/ --public-url ./  && node util.js && clasp push",
+        "dev": "nodemon --watch ./src/client --watch ./src/server --exec \"npm run build-dev\" --ext js,html,css,vue"
     },
     "author": "Mario Vieira",
     "license": "ISC",
     "devDependencies": {
         "@google/clasp": "^2.4.2",
+        "@parcel/transformer-sass": "^2.9.3",
         "@parcel/transformer-vue": "^2.9.3",
         "@types/google-apps-script": "^1.0.66",
         "eslint": "^8.45.0",
