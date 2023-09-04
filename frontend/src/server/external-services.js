@@ -1,7 +1,6 @@
-//TODO: Find a way for this import not interfere with google apps script
 //import 'google-apps-script';
 
-const extractText = async ({ encoded64File }) => {
+const processCv = async ({ base64File }) => {
     const idToken = ScriptApp.getIdentityToken();
 
     const config = {
@@ -10,7 +9,7 @@ const extractText = async ({ encoded64File }) => {
             Authorization: 'Bearer ' + idToken
         },
         payload: {
-            file: encoded64File
+            file: base64File
         }
     };
 
@@ -20,8 +19,7 @@ const extractText = async ({ encoded64File }) => {
     );
 
     const data = JSON.parse(response.getContentText('UTF-8')).data;
-
-    displayDataOnDoc(data);
+    return data;
 };
 
 const displayDataOnDoc = data => {
@@ -45,5 +43,3 @@ const displayDataOnDoc = data => {
         body.appendParagraph(dataValue);
     });
 };
-
-const test = () => 'Hello from the backend';
