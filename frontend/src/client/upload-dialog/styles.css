@@ -5,8 +5,6 @@
 }
 
 main {
-    width: 100vw;
-    height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -14,7 +12,7 @@ main {
 }
 
 .upload-button {
-    width: 400px;
+    width: 300px;
     height: 200px;
     background-color: var(--upload-background-color);
     border-radius: 20px;
@@ -45,6 +43,11 @@ main {
     background-color: var(--accent-color);
     color: white;
     box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.2);
+}
+
+.process-button:disabled {
+    background-color: var(--accent-color);
+    color: white;
 }
 
 .hide {
