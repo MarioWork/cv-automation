@@ -1,15 +1,20 @@
 <template>
     <main>
+        <OskonLogo />
         <button class="upload-button" @click="onSelectFileClick">
-            <span class="upload-button-action-text">Choose a file</span> or drag
-            it here.
+            <i class="fa fa-upload upload-icon"></i>
+            <div>
+                <span class="upload-button-action-text">Choose a file</span>
+                <span> or drag it here. </span>
+            </div>
         </button>
         <button
             class="process-button"
             @click="onProcessButtonClick"
             :disabled="loading"
         >
-            {{ loading ? 'Processing...' : 'Process' }}
+            <div v-if="loading" class="loader"></div>
+            <span v-else>Process</span>
         </button>
         <input
             name="file"
@@ -24,8 +29,9 @@
 </template>
 
 <script setup>
+    import OskonLogo from '../common/components/oskon-logo.vue';
     import { ref, watch } from 'vue';
-
+    //TODO: Separate into separate components
     const fileInput = ref(null);
     const fileObj = ref(null);
     const base64File = ref(null);
@@ -50,7 +56,7 @@
             return;
         }
 
-        console.log(base64File.value);
+        error.value = null;
 
         google.script.run
             .withSuccessHandler(message => console.log(message))
@@ -72,6 +78,8 @@
         const reader = new FileReader();
         reader.onload = () => (base64File.value = reader.result);
         reader.readAsDataURL(fileObj.value);
+
+        error.value = null;
     };
 
     watch(base64File, processCv);
