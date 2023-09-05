@@ -40,6 +40,10 @@ main {
     cursor: pointer;
     color: var(--accent-color);
     font-weight: bold;
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    margin: 0;
 }
 
 .process-button {

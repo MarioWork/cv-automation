@@ -1,13 +1,18 @@
 <template>
     <main>
         <OskonLogo />
-        <button class="upload-button" @click="onSelectFileClick">
+        <div class="upload-button">
             <i class="fa fa-upload upload-icon"></i>
             <div>
-                <span class="upload-button-action-text">Choose a file</span>
+                <button
+                    class="upload-button-action-text"
+                    @click="onSelectFileClick"
+                >
+                    Choose a file
+                </button>
                 <span> or drag it here. </span>
             </div>
-        </button>
+        </div>
         <button
             class="process-button"
             @click="onProcessButtonClick"
