@@ -95,13 +95,14 @@
         error.value = null;
 
         google.script.run
-            .withSuccessHandler(message => {
-                console.log(message);
+            .withSuccessHandler(() => {
                 isLoading.value = false;
+                error.value = null;
             })
             .withFailureHandler(err => {
-                console.log(err.message);
                 isLoading.value = false;
+                error.value = err;
+                console.log(err.message);
             })
             .processCv({ base64File: base64File.value });
     };
