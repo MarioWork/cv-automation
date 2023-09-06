@@ -12,7 +12,7 @@
         "gstart": "clasp push --watch",
         "build-dev": "parcel build  --no-cache ./src/client/**/*.html --dist-dir ./apps-script/ --public-url ./  && node util.js && clasp push",
         "build-prod": "parcel build  --no-cache --no-source-maps ./src/client/**/*.html --dist-dir ./apps-script/ --public-url ./  && node util.js && clasp push",
-        "dev": "nodemon --watch ./src/client --watch ./src/server --exec \"npm run build-dev\" --ext js,html,css,vue"
+        "dev": "nodemon --watch ./src/client --watch ./src/server --exec \"npm run build-dev\" --ext js,html,css,vue,json"
     },
     "author": "Mario Vieira",
     "license": "ISC",
