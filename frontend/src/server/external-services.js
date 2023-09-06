@@ -17,21 +17,26 @@ const processCv = async ({ base64File }) => {
         'https://europe-west2-cv-automation-391816.cloudfunctions.net/cv-automation-api/document',
         config
     );
-
     const data = JSON.parse(response.getContentText('UTF-8')).data;
-    return data;
+
+    const docBody = DocumentApp.getActiveDocument().getBody();
+
+    //Object.keys(data).forEach(key => docBody.appendParagraph(data[key]));
+    docBody.appendParagraph(JSON.stringify(data));
 };
 
-const displayDataOnDoc = data => {
-    const body = DocumentApp.getActiveDocument().getBody();
+/*const displayDataOnDoc = data => {
+    const docId = DocumentApp.getActiveDocument().getId();
 
     Object.keys(data).forEach(key => {
+        const body = doc.getBody();
+
         body.appendParagraph(key);
 
         const dataValue = data[key];
 
         if (Array.isArray(dataValue)) {
-            dataValue.forEach(value => displayDataOnDoc(dataValue));
+            dataValue.forEach(value => displayDataOnDoc(value));
             return;
         }
 
@@ -41,5 +46,6 @@ const displayDataOnDoc = data => {
         }
 
         body.appendParagraph(dataValue);
+        doc.saveAndClose();
     });
-};
+};*/
