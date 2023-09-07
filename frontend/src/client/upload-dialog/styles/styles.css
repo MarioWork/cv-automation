@@ -120,15 +120,19 @@ main {
     border-radius: 25px;
     width: 200px;
     padding: 5px 10px 5px 10px;
+    background-color: red;
     display: flex;
+    align-items: center;
+    color: white;
+    gap: 5px;
 }
 
 .error-message-button {
-    background-color: transparent;
     border: none;
-    color: red;
+    color: white;
     margin-left: auto;
     cursor: pointer;
+    background-color: transparent;
 }
 
 .loader {

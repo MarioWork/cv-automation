@@ -54,6 +54,7 @@
         />
 
         <div v-if="error" class="error-message">
+            <i class="fa-solid fa-circle-info"></i>
             {{ error.message }}
             <button class="error-message-button" @click="onCloseErrorClick">
                 <i class="fa fa-times"></i>
