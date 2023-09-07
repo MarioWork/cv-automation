@@ -56,11 +56,18 @@ main {
     font-weight: bold;
 }
 
-.selected-file > i {
+.remove-file-button {
+    background-color: transparent;
+    border: none;
     height: 100%;
     color: var(--accent-color);
     padding-top: 3px;
     cursor: pointer;
+}
+
+.remove-file-button:disabled {
+    color: darkgray;
+    cursor: not-allowed;
 }
 
 .drag-area-action-text {
@@ -99,6 +106,7 @@ main {
 .process-button:disabled {
     background-color: var(--accent-color);
     color: white;
+    cursor: wait;
 }
 
 .hide {

@@ -11,7 +11,13 @@
 
             <div v-else-if="!isDragging && file" class="selected-file">
                 <span> {{ file.name }}</span>
-                <i class="fa fa-times" @click.prevent="onRemoveFileClick"></i>
+                <button
+                    @click.prevent="onRemoveFileClick"
+                    :disabled="isLoading"
+                    class="remove-file-button"
+                >
+                    <i class="fa fa-times"></i>
+                </button>
             </div>
 
             <div v-else class="drag-area-content">
