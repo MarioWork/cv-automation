@@ -9,6 +9,8 @@ img {
 }
 
 main {
+    width: 100vw;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -111,6 +113,22 @@ main {
 
 .hide {
     display: none;
+}
+
+.error-message {
+    border: 2px solid red;
+    border-radius: 25px;
+    width: 200px;
+    padding: 5px 10px 5px 10px;
+    display: flex;
+}
+
+.error-message-button {
+    background-color: transparent;
+    border: none;
+    color: red;
+    margin-left: auto;
+    cursor: pointer;
 }
 
 .loader {

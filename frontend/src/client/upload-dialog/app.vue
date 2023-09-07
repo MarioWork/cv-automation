@@ -33,14 +33,17 @@
                 </span>
             </div>
         </div>
+
         <button
             class="process-button"
             @click.prevent="onProcessButtonClick"
             :disabled="isLoading"
         >
             <div v-if="isLoading" class="loader"></div>
+
             <span v-else>Process</span>
         </button>
+
         <input
             name="file"
             class="hide"
@@ -49,7 +52,13 @@
             ref="fileInput"
             @change="onFileChanged"
         />
-        <div v-if="error">{{ error.message }}</div>
+
+        <div v-if="error" class="error-message">
+            {{ error.message }}
+            <button class="error-message-button" @click="onCloseErrorClick">
+                <i class="fa fa-times"></i>
+            </button>
+        </div>
     </main>
 </template>
 
@@ -58,7 +67,6 @@
     import { ref, watch } from 'vue';
 
     //TODO: Separate code into separate components
-    //TODO: when processing disable remove file button
     const fileInput = ref(null);
     const file = ref(null);
     const base64File = ref(null);
@@ -66,7 +74,9 @@
     const isLoading = ref(false);
     const error = ref(null);
 
-    const onRemoveFileClick = e => (file.value = null);
+    const onCloseErrorClick = () => (error.value = null);
+
+    const onRemoveFileClick = () => (file.value = null);
 
     const onDragOver = e => {
         isDragging.value = true;
