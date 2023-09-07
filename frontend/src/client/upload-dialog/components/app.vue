@@ -63,7 +63,7 @@
 </template>
 
 <script setup>
-    import OskonLogo from '../common/components/oskon-logo';
+    import OskonLogo from '../../common/components/oskon-logo';
     import { ref, watch } from 'vue';
 
     //TODO: Separate code into separate components or composable
