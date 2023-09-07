@@ -66,7 +66,7 @@
     import OskonLogo from '../common/components/oskon-logo';
     import { ref, watch } from 'vue';
 
-    //TODO: Separate code into separate components
+    //TODO: Separate code into separate components or composable
     const fileInput = ref(null);
     const file = ref(null);
     const base64File = ref(null);
