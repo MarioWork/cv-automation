@@ -118,7 +118,6 @@ main {
 .error-message {
     border: 2px solid red;
     border-radius: 25px;
-    width: 200px;
     padding: 5px 10px 5px 10px;
     background-color: red;
     display: flex;
@@ -133,6 +132,7 @@ main {
     margin-left: auto;
     cursor: pointer;
     background-color: transparent;
+    padding-top: 3px;
 }
 
 .loader {
