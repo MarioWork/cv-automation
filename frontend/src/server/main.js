@@ -27,7 +27,7 @@ function onOpen(e) {
 function showUploadFileDialog() {
     const html = HtmlService.createHtmlOutputFromFile('upload-dialog.html')
         .setWidth(400)
-        .setHeight(300);
+        .setHeight(350);
 
     DocumentApp.getUi().showModalDialog(html, 'CV Automation');
 }
