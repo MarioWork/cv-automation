@@ -9,24 +9,22 @@
 
         <div v-else-if="!isDragging && file" class="selected-file">
             <span> {{ file.name }}</span>
-            <button
-                @click.prevent="clearFile"
-                :disabled="isLoading"
-                class="remove-file-button"
-            >
-                <i class="fa fa-times"></i>
-            </button>
+            <CustomButton
+                :on-click="clearFile"
+                :is-loading="isLoading"
+                styles="remove-file-button"
+                icon-class="fa fa-times"
+            />
         </div>
 
         <div v-else class="drag-area-content">
             <i class="fa fa-upload upload-icon"></i>
             <span>
-                <button
-                    class="drag-area-action-text"
-                    @click.prevent="onSelectFileClick"
-                >
-                    Choose a file
-                </button>
+                <CustomButton
+                    :on-click="onSelectFileClick"
+                    text="Choose a file"
+                    styles="drag-area-action-text"
+                />
                 <span> or drag it here. </span>
             </span>
         </div>
@@ -43,6 +41,9 @@
 
 <script setup>
     import { ref, toRefs } from 'vue';
+
+    import CustomButton from '../../common/components/custom-button.vue';
+
     const fileInput = ref(null);
     const isDragging = ref(false);
 
@@ -75,5 +76,7 @@
 
     const onSelectFileClick = () => fileInput.value.click();
 
-    const onFileChanged = event => insertFile.value(event.target.files[0]);
+    const onFileChanged = event => {
+        insertFile.value(event.target.files[0]);
+    };
 </script>
