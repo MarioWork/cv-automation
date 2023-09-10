@@ -12,20 +12,20 @@
             text="Process"
             styles="process-button"
         />
-
-        <div v-if="error" class="error-message">
-            <i class="fa-solid fa-circle-info"></i>
-            {{ error.message }}
-            <button class="error-message-button" @click="clearError">
-                <i class="fa fa-times"></i>
-            </button>
-        </div>
+        <ErrorMessage
+            v-if="error"
+            :message="error.message"
+            :on-close-click="clearError"
+        />
     </main>
 </template>
 
 <script setup>
     import OskonLogo from '../../common/components/oskon-logo';
+
     import CustomButton from '../../common/components/custom-button';
+    import ErrorMessage from '../../common/components/error-message';
+
     import FileDragArea from './file-drag-area';
 
     import { useDocument } from '../composables/use-document';
