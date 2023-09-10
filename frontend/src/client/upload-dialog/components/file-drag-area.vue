@@ -11,7 +11,7 @@
             <span> {{ file.name }}</span>
             <CustomButton
                 :on-click="clearFile"
-                :is-loading="isLoading"
+                :disabled="disabled"
                 styles="remove-file-button"
                 icon-class="fa fa-times"
             />
@@ -49,6 +49,7 @@
 
     const props = defineProps({
         file: { type: File, required: true },
+        disabled: { type: Boolean, default: false },
         insertFile: {
             type: Function,
             args: [{ type: File }],
@@ -60,9 +61,11 @@
         }
     });
 
-    const { file, insertFile, clearFile } = toRefs(props);
+    const { file, insertFile, clearFile, disabled } = toRefs(props);
 
     const onDragOver = e => {
+        if (disabled) return;
+
         isDragging.value = true;
         e.dataTransfer.dropeffect = 'copy';
     };
@@ -70,6 +73,7 @@
     const onDragLeave = () => (isDragging.value = false);
 
     const onDrop = e => {
+        if (disabled) return;
         isDragging.value = false;
         insertFile.value(e.dataTransfer.files[0]);
     };

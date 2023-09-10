@@ -5,6 +5,7 @@
             :file="file"
             :insert-file="insertFile"
             :clear-file="clearFile"
+            :disabled="isLoading"
         />
         <CustomButton
             :is-loading="isLoading"
