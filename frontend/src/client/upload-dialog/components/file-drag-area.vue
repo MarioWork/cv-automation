@@ -78,5 +78,6 @@
 
     const onFileChanged = event => {
         insertFile.value(event.target.files[0]);
+        event.target.value = null;
     };
 </script>
