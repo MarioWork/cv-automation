@@ -64,8 +64,7 @@
     const { file, insertFile, clearFile, disabled } = toRefs(props);
 
     const onDragOver = e => {
-        if (disabled) return;
-
+        if (disabled.value) return;
         isDragging.value = true;
         e.dataTransfer.dropeffect = 'copy';
     };
@@ -73,7 +72,7 @@
     const onDragLeave = () => (isDragging.value = false);
 
     const onDrop = e => {
-        if (disabled) return;
+        if (disabled.value) return;
         isDragging.value = false;
         insertFile.value(e.dataTransfer.files[0]);
     };
