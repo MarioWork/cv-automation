@@ -3,12 +3,12 @@
         <OskonLogo />
         <FileDragArea
             :file="file"
-            :insertFile="insertFile"
-            :clearFile="clearFile"
+            :insert-file="insertFile"
+            :clear-file="clearFile"
         />
         <CustomButton
-            :isLoading="isLoading"
-            :onClick="process"
+            :is-loading="isLoading"
+            :on-click="process"
             text="Process"
             styles="process-button"
         />
