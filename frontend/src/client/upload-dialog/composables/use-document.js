@@ -31,7 +31,7 @@ exports.useDocument = () => {
 
         try {
             const base64File = await createBase64File(state.file.value);
-            google.script.run.processCv({ base64File });
+            google.script.run.process({ base64File });
         } catch (error) {
             state.error.value = errorType.UNKNOWN;
         }
