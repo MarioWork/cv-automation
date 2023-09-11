@@ -1,17 +1,12 @@
 import { ref } from 'vue';
 
+import { createBase64File } from '../../common/utils/create-base-64-file';
+import { runServerFunction } from '../../common/utils/run-server-function';
+
 const errorType = {
     NO_FILE: new Error('No such file selected'),
     UNKNOWN: new Error('Oops! Something went wrong')
 };
-
-const createBase64File = file =>
-    new Promise((resolve, reject) => {
-        const reader = new FileReader();
-        reader.onload = () => resolve(reader.result.split(',')[1]);
-        reader.onerror = reject(reader.error);
-        reader.readAsDataURL(file.value);
-    });
 
 exports.useDocument = () => {
     const state = {
@@ -27,13 +22,19 @@ exports.useDocument = () => {
             return;
         }
 
+        state.error.value = null;
         state.isLoading.value = true;
 
         try {
             const base64File = await createBase64File(state.file.value);
-            google.script.run.process({ base64File });
+            await runServerFunction({
+                functionName: 'processCv',
+                data: { base64File }
+            });
         } catch (error) {
-            state.error.value = errorType.UNKNOWN;
+            console.log(error);
+            state.error.value = error.message;
+            /*             state.error.value = errorType.UNKNOWN; */
         }
 
         state.isLoading.value = false;
