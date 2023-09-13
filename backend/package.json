@@ -5,7 +5,8 @@
     "main": "index.js",
     "scripts": {
         "dev": "nodemon --exec 'functions-framework --target=app  --source=index'",
-        "format-prompt": "node ./scripts/format-prompt-text.js"
+        "format-prompt": "node ./scripts/format-prompt-text.js",
+        "deploy": "sh ./scripts/cloud.sh"
     },
     "keywords": [],
     "author": "",
