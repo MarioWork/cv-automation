@@ -4,6 +4,15 @@
     --upload-background-color: rgba(2, 75, 227, 0.3);
 }
 
+.custom-button-loading-content {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
 .error-message {
     transition: all 0.3s ease-in-out;
     animation: 0.5s ease-in slideInFromTop;
