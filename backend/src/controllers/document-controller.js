@@ -32,6 +32,5 @@ module.exports = async (req, res) => {
         console.log(aiError);
         return res.sendStatus(500);
     }
-
-    return res.send({ data: data.replace(/(\r\n|\n|\r)/gm, '') });
+    return res.send(data);
 };
