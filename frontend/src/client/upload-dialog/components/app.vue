@@ -9,6 +9,7 @@
         />
         <CustomButton
             :is-loading="isLoading"
+            :loading-message="currentProcess"
             :on-click="process"
             text="Process"
             styles="process-button"
@@ -35,6 +36,7 @@
         file,
         error,
         isLoading,
+        currentProcess,
         insertFile,
         clearFile,
         clearError,
