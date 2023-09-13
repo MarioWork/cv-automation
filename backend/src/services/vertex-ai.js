@@ -38,6 +38,5 @@ exports.organizeDataIntoDataStructure = async ({ promptData }) => {
         response[0].predictions[0].structValue.fields.candidates.listValue
             .values[0].structValue.fields.content.stringValue;
 
-    //TODO: Return this as an object instead of string
-    return data;
+    return JSON.parse(data);
 };
