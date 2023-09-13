@@ -15,7 +15,6 @@ const processType = {
     EMPTY: ''
 };
 
-//TODO: add a label to button saying extracting and writting
 exports.useDocument = () => {
     const state = {
         file: ref(null),
