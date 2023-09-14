@@ -1,6 +1,5 @@
 //import 'google-apps-script';
 
-//TODO: stop functions from running when there is an error
 const processDocument = async ({ base64File }) => {
     const idToken = ScriptApp.getIdentityToken();
 
