@@ -1,6 +1,6 @@
 const aiplatform = require('@google-cloud/aiplatform');
 
-const createDataStructurePrompt = require('../utils/vertex-ai-data-structure-prompt');
+const createDataStructurePrompt = require('../utils/prompt-creator.js');
 
 const { PredictionServiceClient } = aiplatform.v1;
 
