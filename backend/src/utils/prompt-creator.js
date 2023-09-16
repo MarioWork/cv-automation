@@ -47,5 +47,5 @@ module.exports = data => ({
             }
         }
     ],
-    messages: [{ author: 'user', content: data }]
+    messages: [{ author: 'user', content: data }] //TODO: swap data to be the messages
 });
