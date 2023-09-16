@@ -7,6 +7,7 @@ const path = './scripts/test.json';
 
 const { context, examples } = JSON.parse(fs.readFileSync(path, 'utf8'));
 
+//To remove all white spaces and \n in the string except inside " " aka properties and its values
 const transformedExamples = examples.map(ex => ({
     ...ex,
     output: {
