@@ -3,7 +3,7 @@ const fs = require('fs');
 const destDir = './src/utils/';
 const fileName = 'prompt-creator.js';
 
-const path = './scripts/test.json';
+const path = './scripts/file-name.json';
 
 const { context, examples } = JSON.parse(fs.readFileSync(path, 'utf8'));
 
