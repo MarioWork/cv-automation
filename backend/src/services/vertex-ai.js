@@ -10,7 +10,7 @@ const predictionServiceClient = new PredictionServiceClient({
     apiEndpoint: 'us-central1-aiplatform.googleapis.com'
 });
 
-exports.organizeDataIntoDataStructure = async ({ promptData }) => {
+exports.organizeDataIntoDataStructure = async promptData => {
     const prompt = createDataStructurePrompt(promptData);
 
     const instanceValue = helpers.toValue(prompt);
@@ -32,7 +32,11 @@ exports.organizeDataIntoDataStructure = async ({ promptData }) => {
         parameters
     };
 
+    console.log('Creating data structure...');
+
     const response = await predictionServiceClient.predict(request);
+
+    console.log('Finished Creating data structure...');
 
     const data =
         response[0].predictions[0].structValue.fields.candidates.listValue

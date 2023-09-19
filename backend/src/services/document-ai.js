@@ -15,8 +15,11 @@ exports.extractText = async ({ file }) => {
             mimeType: 'application/pdf'
         }
     };
+    console.log('Extracting text...');
 
     const response = await client.processDocument(request);
+
+    console.log('Finished Extracting text...');
 
     return response[0].document.text;
 };
