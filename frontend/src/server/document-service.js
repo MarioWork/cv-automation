@@ -39,9 +39,13 @@ const writeDataToDocument = data => {
         'https://storage.googleapis.com/cv-document-images/oskon-logo.png'
     ).getBlob();
 
+    let paragraphIndex = 0;
+
+    //Header
     docBody
-        .insertParagraph(0, candidateName)
+        .insertParagraph(paragraphIndex++, candidateName)
         .setFontSize(32)
+        .setBold(true)
         .setForegroundColor('#000000')
         .addPositionedImage(logoImage)
         .setWidth(300)
@@ -49,7 +53,32 @@ const writeDataToDocument = data => {
         .setLeftOffset(280);
 
     docBody
-        .insertParagraph(1, data.jobTitle ?? 'Unknown')
+        .insertParagraph(paragraphIndex++, data.jobTitle ?? 'Unknown')
+        .setBold(false)
         .setFontSize(22)
         .setForegroundColor('#717171');
+
+    //Education/Training
+    docBody
+        .insertParagraph(paragraphIndex++, 'Education/Training')
+        .setSpacingBefore(70)
+        .setFontSize(24)
+        .setForegroundColor('#000000');
+
+    data.education.forEach(
+        ({ startingDate, finishDate, title, institution }) => {
+            const educationText = `${startingDate}/${finishDate} - ${title} | ${institution}`;
+            docBody
+                .insertParagraph(paragraphIndex++, educationText)
+                .setFontSize(12);
+        }
+    );
+
+    //Profile
+
+    //Technical skills
+
+    //Languages
+
+    //Projects
 };
