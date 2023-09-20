@@ -51,7 +51,7 @@ const writeDataToDocument = data => {
         .setBold(true)
         .setForegroundColor('#000000')
         .addPositionedImage(logoImage)
-        .setWidth(300)
+        .setWidth(330)
         .setHeight(60)
         .setLeftOffset(280);
 
