@@ -23,6 +23,9 @@ const processDocument = async ({ base64File }) => {
 
 const clearDocument = () => DocumentApp.getActiveDocument().getBody().clear();
 
+//TODO: After revision organize into a better doc creation algorithm
+//TODO: Add page numbers
+//TODO: Add logo on top of header after first page
 const writeDataToDocument = data => {
     const splittedCandidateName = data.name ? data.name.split(' ') : null;
 
@@ -75,10 +78,66 @@ const writeDataToDocument = data => {
     );
 
     //Profile
+    docBody
+        .insertParagraph(paragraphIndex++, 'Profile')
+        .setSpacingBefore(30)
+        .setFontSize(24);
+
+    docBody
+        .insertParagraph(paragraphIndex++, data.description ?? 'No description')
+        .setFontSize(12);
 
     //Technical skills
+    docBody
+        .insertParagraph(paragraphIndex++, 'Technical skills')
+        .setSpacingBefore(30)
+        .setFontSize(24);
+
+    data.skills.forEach(skill =>
+        docBody.insertParagraph(paragraphIndex++, skill).setFontSize(12)
+    );
 
     //Languages
+    docBody
+        .insertParagraph(paragraphIndex++, 'Languages')
+        .setSpacingBefore(30)
+        .setFontSize(24);
+
+    if (data.language.length > 0)
+        data.language.forEach(language =>
+            docBody.insertParagraph(paragraphIndex++, language).setFontSize(12)
+        );
+
+    docBody.insertParagraph(paragraphIndex++, 'No Languages').setFontSize(12);
 
     //Projects
+    docBody
+        .insertParagraph(paragraphIndex++, 'Projects')
+        .setSpacingBefore(30)
+        .setFontSize(24);
+
+    data.workExperience.forEach(
+        ({
+            company,
+            location,
+            startingDate,
+            finishDate,
+            title,
+            description
+        }) => {
+            const docExperienceTitle = `${company}, ${location} - Since ${startingDate} @ ${finishDate} ${title}`;
+            docBody
+                .insertParagraph(paragraphIndex++, docExperienceTitle)
+                .setFontSize(12)
+                .setBold(true);
+            docBody
+                .insertListItem(
+                    paragraphIndex++,
+                    description ?? 'No description'
+                )
+                .setFontSize(12)
+                .setBold(false)
+                .setGlyphType(DocumentApp.GlyphType.BULLET);
+        }
+    );
 };
