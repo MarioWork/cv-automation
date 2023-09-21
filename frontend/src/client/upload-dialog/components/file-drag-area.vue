@@ -60,7 +60,7 @@
             required: true
         }
     });
-
+    //TODO: Fix bug when file name to long
     const { file, insertFile, clearFile, disabled } = toRefs(props);
 
     const onDragOver = e => {
