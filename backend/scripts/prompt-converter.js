@@ -3,16 +3,16 @@ const fs = require('fs');
 const destDir = './src/utils/';
 const fileName = 'prompt-creator.js';
 
-const path = './scripts/file-name.json';
+const path = './scripts/og-prompt.json';
 
 const { context, examples } = JSON.parse(fs.readFileSync(path, 'utf8'));
 
-//To remove all white spaces and \n in the content string except inside " " aka properties and its values
+//To remove all \ and \n in the content string
 const transformedExamples = examples.map(ex => ({
     ...ex,
     output: {
         ...ex.output,
-        content: ex.output.content.replace(/(".*?"|[^"\s]+)\s*/g, '$1')
+        content: ex.output.content.replace(/[\n\\]/g, ' ')
     }
 }));
 
