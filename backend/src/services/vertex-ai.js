@@ -18,7 +18,7 @@ exports.organizeDataIntoDataStructure = async promptData => {
     const instances = [instanceValue];
 
     const parameter = {
-        temperature: 0.2,
+        temperature: 0,
         maxOutputTokens: 1024,
         topP: 0.8,
         topK: 40
