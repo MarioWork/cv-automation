@@ -111,13 +111,13 @@ const writeDataToDocument = data => {
         .setFontSize(24)
         .setForegroundColor('#000000');
 
-    if (data.language.length == 0)
+    if (data.languages.length == 0)
         docBody
             .insertParagraph(paragraphIndex++, 'No Languages')
             .setForegroundColor('#FF0000')
             .setFontSize(12);
 
-    data.language.forEach(language =>
+    data.languages.forEach(language =>
         docBody
             .insertParagraph(paragraphIndex++, language)
             .setFontSize(12)
