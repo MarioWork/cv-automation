@@ -24,14 +24,15 @@ function onOpen(e) {
         .addToUi();
 }
 
+//TODO: fix size
 function showUploadFileDialog() {
-    //writeData();
-
     const html = HtmlService.createHtmlOutputFromFile('upload-dialog.html')
         .setWidth(400)
-        .setHeight(330);
+        .setHeight(300);
 
-    DocumentApp.getUi().showModalDialog(html, '‎');
+    const emptyCharacter = '‎';
+
+    DocumentApp.getUi().showModalDialog(html, emptyCharacter);
 }
 
 function enhanceCVSidebar() {}
