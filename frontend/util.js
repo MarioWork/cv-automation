@@ -4,7 +4,7 @@ const path = require('path');
 const sourceDir = './src/server';
 const destDir = './apps-script';
 
-const copyFiles = (sourceDir, destDir) => {
+const copyFiles = ({ sourceDir, destDir }) => {
     const files = fs.readdirSync(sourceDir);
 
     files.forEach(file => {
@@ -22,4 +22,4 @@ const copyFiles = (sourceDir, destDir) => {
     });
 };
 
-copyFiles(sourceDir, destDir);
+copyFiles({ sourceDir, destDir });
