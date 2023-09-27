@@ -41,6 +41,7 @@ const createDocumentStructureService_ = data => {
     const docBody = DocumentApp.getActiveDocument().getBody();
     docBody.setAttributes({ [DocumentApp.Attribute.FONT_FAMILY]: 'Inter' });
 
+    //TODO: Create a function to verify string instead always ?? unknown
     const docStructure = [
         {
             level: docHierarchyLevel.DOC_START,
@@ -80,7 +81,9 @@ const createDocumentStructureService_ = data => {
         ...data.education.map(({ start, end, title, institution }) => ({
             level: docHierarchyLevel.NEW_ROW,
             type: docComponentsType.PARAGRAPH,
-            value: `${start}/${end} - ${title} | ${institution}`
+            value: `${start ?? 'Unknown'}/${end ?? 'Unknown'} - ${
+                title ?? 'Unknown'
+            } | ${institution ?? 'Unknown'}`
         })),
         {
             level: docHierarchyLevel.NEW_ROW,
@@ -137,14 +140,18 @@ const createDocumentStructureService_ = data => {
             ({ company, address, start, end, title, description }) => ({
                 level: docHierarchyLevel.NEW_ROW,
                 type: docComponentsType.PARAGRAPH,
-                value: `${company}, ${address} - Since ${start} @ ${end} ${title}`,
+                value: `${company ?? 'Unknown'}, ${
+                    address ?? 'Unknown'
+                } - Since ${start ?? 'Unknown'} @ ${end ?? 'Unknown'} ${
+                    title ?? 'Unknown'
+                }`,
                 attributes: {
                     bold: true
                 },
                 children: description.map(desc => ({
                     level: docHierarchyLevel.NEW_ROW,
                     type: docComponentsType.LIST_ITEM,
-                    value: desc
+                    value: desc ?? 'Unknown'
                 }))
             })
         )
