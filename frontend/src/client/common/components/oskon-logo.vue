@@ -3,8 +3,8 @@
         version="1.2"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 1750 300"
-        width="250"
-        height="30"
+        width="300"
+        height="50"
     >
         <title>oskon-logo</title>
         <defs>
