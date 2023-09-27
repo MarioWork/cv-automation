@@ -13,7 +13,7 @@ const copyFiles = ({ sourceDir, destDir }) => {
 
         fs.lstat(sourcePath, (_, stats) => {
             if (stats.isDirectory()) {
-                copyFiles({ sourcePath, destDir });
+                copyFiles({ sourceDir: sourcePath, destDir });
                 return;
             }
 
