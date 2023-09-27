@@ -27,136 +27,243 @@ const clearDocument = () => DocumentApp.getActiveDocument().getBody().clear();
 //TODO: Add page numbers
 //TODO: Add logo on top of header after first page
 const writeDataToDocument = data => {
-    const splittedCandidateName = data.name ? data.name.split(' ') : null;
-
-    const candidateName = splittedCandidateName
-        ? splittedCandidateName[0] +
-          ' ' +
-          splittedCandidateName[splittedCandidateName.length - 1]
-        : 'Unknown';
-
-    const docBody = DocumentApp.getActiveDocument().getBody();
-
-    //TODO: make it private and use id
+    /*  //TODO: make it private and use id
     const logoImage = UrlFetchApp.fetch(
         'https://storage.googleapis.com/cv-document-images/oskon-logo.png'
     ).getBlob();
 
     let paragraphIndex = 0;
 
-    docBody.setAttributes({ [DocumentApp.Attribute.FONT_FAMILY]: 'Inter' });
+    docBody.setAttributes({ [DocumentApp.Attribute.FONT_FAMILY]: 'Inter' }); */
 
-    //Header
-    docBody
-        .insertParagraph(paragraphIndex++, candidateName)
-        .setFontSize(32)
-        .setBold(true)
-        .setForegroundColor('#000000')
-        .addPositionedImage(logoImage)
-        .setWidth(330)
-        .setHeight(60)
-        .setLeftOffset(220);
+    const docComponentsType = {
+        TEXT: 'text',
+        PARAGRAPH: 'paragraph',
+        POSITIONED_IMAGE: 'positioned image',
+        LIST_ITEM: 'list item'
+    };
 
-    docBody
-        .insertParagraph(paragraphIndex++, data.jobTitle ?? 'Unknown')
-        .setForegroundColor('#000000')
-        .setBold(false)
-        .setFontSize(22);
+    const defaultDocComponentAttributes = {
+        fontColor: '#000000',
+        fontSize: 12,
+        bold: false,
+        marginLeft: 0,
+        glyphType: DocumentApp.GlyphType.BULLET,
+        value: 'Unknown',
+        imageWidth: 100,
+        imageHeigh: 50
+    };
 
-    //Education/Training
-    docBody
+    const docSectionTitles = {
+        EDUCATION: 'Education / Training',
+        PROFILE: 'Profile',
+        TECHNICAL_SKILLS: 'Technical skills',
+        LANGUAGES: 'Languages',
+        PROJECTS: 'Projects'
+    };
 
-        .insertParagraph(paragraphIndex++, 'Education / Training')
-        .setSpacingBefore(70)
-        .setFontSize(24)
-        .setForegroundColor('#000000');
+    const splittedCandidateName = data.name ? data.name.split(' ') : null;
 
-    data.education.forEach(({ start, end, title, institution }) => {
-        const educationText = `${start}/${end} - ${title} | ${institution}`;
-        docBody
-            .insertParagraph(paragraphIndex++, educationText)
-            .setFontSize(12);
-    });
+    const candidateName = splittedCandidateName
+        ? splittedCandidateName[0] +
+          ' ' +
+          splittedCandidateName[splittedCandidateName.length - 1]
+        : null;
 
-    //Profile
-    docBody
-        .insertParagraph(paragraphIndex++, 'Profile')
-        .setForegroundColor('#000000')
-        .setSpacingBefore(30)
-        .setFontSize(24);
+    const docBody = DocumentApp.getActiveDocument().getBody();
 
-    docBody
-        .insertParagraph(paragraphIndex++, data.description ?? 'No description')
-        .setForegroundColor('#000000')
-        .setFontSize(12);
+    //Level 0 means its a new document row | only component type is required the rest has default values
+    const docStructure = [
+        {
+            level: 0,
+            type: docComponentsType.PARAGRAPH,
+            value: candidateName,
+            attributes: { fontSize: 32, bold: true },
+            children: [
+                {
+                    level: 2,
+                    type: docComponentsType.POSITIONED_IMAGE,
+                    value: 'https://storage.googleapis.com/cv-document-images/oskon-logo.png',
+                    attributes: {
+                        width: 330,
+                        height: 60,
+                        marginLeft: 220
+                    }
+                }
+            ]
+        },
+        {
+            level: 1,
+            type: docComponentsType.PARAGRAPH,
+            value: data.jobTitle,
+            attributes: {
+                fontSize: 22
+            }
+        },
+        {
+            level: 1,
+            type: docComponentsType.PARAGRAPH,
+            value: docSectionTitles.EDUCATION,
+            attributes: {
+                fontSize: 22,
+                spacingBefore: 70
+            }
+        },
+        ...data.education.map(({ start, end, title, institution }) => ({
+            level: 1,
+            type: docComponentsType.PARAGRAPH,
+            value: `${start}/${end} - ${title} | ${institution}`
+        })),
+        {
+            level: 1,
+            type: docComponentsType.PARAGRAPH,
+            value: docSectionTitles.PROFILE,
+            attributes: {
+                fontSize: 22,
+                spacingBefore: 30
+            }
+        },
+        {
+            level: 1,
+            type: docComponentsType.PARAGRAPH,
+            value: data.description
+        },
+        {
+            level: 1,
+            type: docComponentsType.PARAGRAPH,
+            value: docSectionTitles.TECHNICAL_SKILLS,
+            attributes: {
+                fontSize: 22,
+                spacingBefore: 30
+            }
+        },
+        ...data.skills.map(skill => ({
+            level: 1,
+            type: docComponentsType.PARAGRAPH,
+            value: skill
+        })),
+        {
+            level: 1,
+            type: docComponentsType.PARAGRAPH,
+            value: docSectionTitles.LANGUAGES,
+            attributes: {
+                fontSize: 22,
+                spacingBefore: 30
+            }
+        },
+        ...data.languages.map(language => ({
+            level: 1,
+            type: docComponentsType.PARAGRAPH,
+            value: language
+        })),
+        {
+            level: 1,
+            type: docComponentsType.PARAGRAPH,
+            value: docSectionTitles.PROJECTS,
+            attributes: {
+                fontSize: 22,
+                spacingBefore: 30
+            }
+        },
+        ...data.workExperience.map(
+            ({ company, address, start, end, title, description }) => ({
+                level: 1,
+                type: docComponentsType.PARAGRAPH,
+                value: `${company}, ${address} - Since ${start} @ ${end} ${title}`,
+                attributes: {
+                    bold: true
+                },
+                children: description.map(desc => ({
+                    level: 1,
+                    type: docComponentsType.LIST_ITEM,
+                    value: desc
+                }))
+            })
+        )
+    ];
 
-    //Technical skills
-    docBody
-        .setForegroundColor('#000000')
-        .insertParagraph(paragraphIndex++, 'Technical skills')
-        .setSpacingBefore(30)
-        .setFontSize(24);
+    let docIndex = 0;
 
-    data.skills.forEach(skill =>
-        docBody
-            .insertParagraph(paragraphIndex++, skill)
-            .setFontSize(12)
-            .setForegroundColor('#000000')
-    );
+    const createDocStructure = ({ parent, children, level }) => {
+        if (level < 2) docIndex++;
 
-    //Languages
-    docBody
-        .insertParagraph(paragraphIndex++, 'Languages')
-        .setSpacingBefore(30)
-        .setFontSize(24)
-        .setForegroundColor('#000000');
+        children?.forEach(
+            ({
+                type: childType,
+                value: childValue,
+                attributes: childAttributes,
+                children: childChildren,
+                level: childLevel
+            }) => {
+                const component = createDocComponent({
+                    parent,
+                    componentType: childType,
+                    value: childValue,
+                    attributes: childAttributes,
+                    level: childLevel
+                });
 
-    if (data.languages.length == 0)
-        docBody
-            .insertParagraph(paragraphIndex++, 'No Languages')
-            .setForegroundColor('#FF0000')
-            .setFontSize(12);
+                createDocStructure({
+                    parent: component,
+                    children: childChildren,
+                    level: childLevel
+                });
+            }
+        );
+    };
 
-    data.languages.forEach(language =>
-        docBody
-            .insertParagraph(paragraphIndex++, language)
-            .setFontSize(12)
-            .setForegroundColor('#000000')
-    );
+    const createDocComponent = ({
+        parent,
+        componentType,
+        value,
+        attributes,
+        level
+    }) => {
+        const {
+            fontColor: defaultFontColor,
+            bold: defaultBoldValue,
+            fontSize: defaultFontSize,
+            marginLeft: defaultMarginLeft,
+            glyphType: defaultGlyphType,
+            value: defaultValue,
+            imageWidth: defaultImageWidth,
+            imageHeight: defaultImageHeight
+        } = defaultDocComponentAttributes;
 
-    //Projects
-    docBody
-        .insertParagraph(paragraphIndex++, 'Projects')
-        .setSpacingBefore(30)
-        .setFontSize(24)
-        .setForegroundColor('#000000');
+        const comp =
+            level < 2 ? DocumentApp.getActiveDocument().getBody() : parent;
 
-    data.workExperience.forEach(
-        ({ company, address, start, end, title, description }) => {
-            const docExperienceTitle = `${company}, ${address} - Since ${start} @ ${end} ${title}`;
+        if (componentType === docComponentsType.PARAGRAPH)
+            return comp
+                .insertParagraph(docIndex, value ?? defaultValue)
+                .setFontSize(attributes?.fontSize ?? defaultFontSize)
+                .setBold(attributes?.bold ?? defaultBoldValue)
+                .setForegroundColor(attributes?.fontColor ?? defaultFontColor)
+                .setSpacingBefore(attributes?.spacingBefore ?? 0);
 
-            docBody
-                .insertParagraph(paragraphIndex++, docExperienceTitle)
-                .setFontSize(12)
-                .setBold(true)
-                .setForegroundColor('#000000');
-
-            if (description.length <= 0)
-                docBody
-                    .insertListItem(paragraphIndex++, 'No Description')
-                    .setForegroundColor('#FF0000')
-                    .setFontSize(12)
-                    .setBold(false)
-                    .setGlyphType(DocumentApp.GlyphType.BULLET);
-
-            description.forEach(desc =>
-                docBody
-                    .insertListItem(paragraphIndex++, desc)
-                    .setForegroundColor('#000000')
-                    .setFontSize(12)
-                    .setBold(false)
-                    .setGlyphType(DocumentApp.GlyphType.BULLET)
-            );
+        if (componentType === docComponentsType.POSITIONED_IMAGE) {
+            const image = UrlFetchApp.fetch(value).getBlob();
+            return comp
+                .addPositionedImage(image)
+                .setWidth(attributes?.width ?? defaultImageWidth)
+                .setHeight(attributes?.height ?? defaultImageHeight)
+                .setLeftOffset(attributes?.marginLeft ?? defaultMarginLeft);
         }
-    );
+
+        if (componentType === docComponentsType.LIST_ITEM) {
+            return comp
+                .insertListItem(docIndex, value ?? defaultValue)
+                .setForegroundColor(attributes?.fontColor ?? defaultFontColor)
+                .setFontSize(attributes?.fontSize ?? defaultFontSize)
+                .setBold(attributes?.bold ?? defaultBoldValue)
+                .setGlyphType(attributes?.glyphType ?? defaultGlyphType);
+        }
+
+        return DocumentApp.getActiveDocument().getBody();
+    };
+
+    createDocStructure({
+        parent: docBody,
+        children: docStructure
+    });
 };
