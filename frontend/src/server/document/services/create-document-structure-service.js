@@ -36,8 +36,6 @@ let docIndex = 0;
 //TODO: Add page numbers
 //TODO: Add logo on top of header after first page
 const createDocumentStructureService_ = data => {
-    console.log(data);
-
     const candidateName = transformCandidateName_(data.name);
 
     const docBody = DocumentApp.getActiveDocument().getBody();
