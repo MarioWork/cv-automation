@@ -52,12 +52,13 @@ exports.useDocument = () => {
                 functionName: 'writeDataToDocument',
                 data: data
             });
+
+            google.script.host.close();
         } catch (error) {
             state.currentProcess.value = processType.EMPTY;
             state.error.value = errorType.UNKNOWN;
         }
 
-        google.script.host.close();
         state.currentProcess.value = processType.EMPTY;
         state.isLoading.value = false;
     };
