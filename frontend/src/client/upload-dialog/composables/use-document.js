@@ -32,6 +32,7 @@ exports.useDocument = () => {
 
         state.error.value = null;
         state.isLoading.value = true;
+
         //TODO: server functions names be a enum
         try {
             state.currentProcess.value = processType.CLEAN_UP;

@@ -1,14 +1,25 @@
 const fs = require('fs');
 const path = require('path');
 
-const serverDir = './src/server';
+const sourceDir = './src/server';
 const destDir = './apps-script';
 
-const serverFiles = fs.readdirSync(path.resolve(__dirname, serverDir));
+const copyFiles = ({ sourceDir, destDir }) => {
+    const files = fs.readdirSync(sourceDir);
 
-serverFiles.forEach(file =>
-    fs.copyFileSync(
-        path.resolve(__dirname, serverDir, file),
-        path.resolve(__dirname, destDir, file)
-    )
-);
+    files.forEach(file => {
+        const sourcePath = path.join(sourceDir, file);
+        const destinationPath = path.join(destDir, file);
+
+        fs.lstat(sourcePath, (_, stats) => {
+            if (stats.isDirectory()) {
+                copyFiles({ sourceDir: sourcePath, destDir });
+                return;
+            }
+
+            fs.copyFileSync(sourcePath, destinationPath);
+        });
+    });
+};
+
+copyFiles({ sourceDir, destDir });

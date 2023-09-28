@@ -24,11 +24,10 @@ function onOpen(e) {
         .addToUi();
 }
 
-//TODO: fix size
 function showUploadFileDialog() {
     const html = HtmlService.createHtmlOutputFromFile('upload-dialog.html')
         .setWidth(400)
-        .setHeight(300);
+        .setHeight(350);
 
     const emptyCharacter = '‎';
 
