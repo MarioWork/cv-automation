@@ -10,15 +10,23 @@ const predictionServiceClient = new PredictionServiceClient({
     apiEndpoint: 'us-central1-aiplatform.googleapis.com'
 });
 
-exports.organizeDataIntoDataStructure = async promptData => {
-    const prompt = createDataStructurePrompt(promptData);
+const messageAuthors = {
+    USER: 'user',
+    BOT: ' bot'
+};
 
+const loadMoreDataMsg = {
+    author: messageAuthors.USER,
+    content: `is there more? if yes send it if no send the word no`
+};
+
+const createRequest = prompt => {
     const instanceValue = helpers.toValue(prompt);
 
     const instances = [instanceValue];
 
     const parameter = {
-        temperature: 0,
+        temperature: 0.2,
         maxOutputTokens: 1024,
         topP: 0.8,
         topK: 40
@@ -26,21 +34,48 @@ exports.organizeDataIntoDataStructure = async promptData => {
 
     const parameters = helpers.toValue(parameter);
 
-    const request = {
+    return {
         endpoint: process.env.VERTEX_AI_TEXT_ENDPOINT,
         instances,
         parameters
     };
+};
 
-    console.log('Creating data structure...');
+const cleanUpSerializeData = dataStructureString =>
+    JSON.parse(
+        dataStructureString.replaceAll('```json', '').replaceAll('```', '')
+    );
 
-    const response = await predictionServiceClient.predict(request);
+exports.organizeDataIntoDataStructure = async promptData => {
+    let finalData = '';
+    let loadMore = true;
+    let messages = [{ author: messageAuthors.USER, content: promptData }];
 
-    console.log('Finished Creating data structure...');
+    while (loadMore) {
+        const prompt = createDataStructurePrompt(messages);
+        const request = createRequest(prompt);
+        const response = await predictionServiceClient.predict(request);
 
-    const data =
-        response[0].predictions[0].structValue.fields.candidates.listValue
-            .values[0].structValue.fields.content.stringValue;
+        const data =
+            response[0].predictions[0].structValue.fields.candidates.listValue
+                .values[0].structValue.fields.content.stringValue;
 
-    return JSON.parse(data);
+        if (data.trim() === 'no') {
+            loadMore = false;
+            break;
+        }
+
+        finalData += data;
+
+        messages = [
+            ...messages,
+            { author: messageAuthors.BOT, content: data },
+            loadMoreDataMsg
+        ];
+    }
+
+    //TODO: For debugging purposes
+    //return finalData;
+
+    return cleanUpSerializeData(finalData);
 };
