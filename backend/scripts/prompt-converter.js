@@ -20,10 +20,13 @@ const transformedExamples = examples.map(ex => ({
 const prompt = JSON.stringify({
     context,
     examples: transformedExamples,
-    messages: [{ author: 'user', content: '$$$data$$$' }]
-}).replace('"$$$data$$$"', 'data');
+    messages: '$$$messages$$$'
+}).replace('"$$$messages$$$"', 'messages');
 
 //Create prompt creation
-fs.writeFileSync(destDir + fileName, `module.exports = data => (${prompt})`);
+fs.writeFileSync(
+    destDir + fileName,
+    `module.exports = messages => (${prompt})`
+);
 
 console.log('File created at: ' + destDir + fileName);
