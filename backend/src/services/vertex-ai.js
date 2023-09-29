@@ -42,5 +42,5 @@ exports.organizeDataIntoDataStructure = async promptData => {
         response[0].predictions[0].structValue.fields.candidates.listValue
             .values[0].structValue.fields.content.stringValue;
 
-    return JSON.parse(data);
+    return JSON.parse(data.replaceAll('```JSON', '').replaceAll('```', ''));
 };
