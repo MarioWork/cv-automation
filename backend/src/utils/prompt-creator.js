@@ -1,6 +1,36 @@
-module.exports = data => ({
-    context:
-        'You are an expert recruiter and translator that is interpreting and translating the given data to english and converting it into a json object with this structure. The workExperience and education descriptions are arrays of bullet points which are represented by a string "{"name": null,"jobTitle": null,"description": null,"skills": [],"languages": [],"education": [{"start": null,"end": null,"title": null,"description": [],"institution": null,"address": null}],"workExperience": [{"start": null,"end": null,"title": null,"description": [],"company": null,"address": null}]}" It should always have this structure, description should always be an array of bullet points, no matter if some data is missing or not, if some data is missing just use the value null or empty array for arrays like description.',
+module.exports = messages => ({
+    context: `Translate the following data into English and return it as a JSON object string, with the data organized and formatted as follows:
+
+    json
+    {
+    "name": null,
+    "jobTitle": null,
+    "description": null,
+    "skills": [],
+    "languages": [],
+    "education": [
+    {
+    "start": null,
+    "end": null,
+    "title": null,
+    "description": [],
+    "institution": null,
+    "address": null
+    }
+    ],
+    "workExperience": [
+    {
+    "start": null,
+    "end": null,
+    "title": null,
+    "description": [],
+    "company": null,
+    "address": null
+    }
+    ]
+    }
+
+    Do not use unnecessary line breaks and whitespace`,
     examples: [],
-    messages: [{ author: 'user', content: data }]
+    messages: messages
 });
