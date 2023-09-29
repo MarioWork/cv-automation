@@ -5,7 +5,7 @@ import { runServerFunction } from '../../common/utils/run-server-function';
 
 const errorType = {
     NO_FILE: new Error('No such file selected'),
-    UNKNOWN: new Error('Oops! Something went wrong')
+    UNKNOWN: new Error('Oops! Something went wrong, try again!')
 };
 
 const processType = {
