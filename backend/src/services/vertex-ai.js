@@ -17,9 +17,11 @@ const messageAuthors = {
     BOT: ' bot'
 };
 
+const ESCAPE_CODE = '#11#22';
+
 const loadMoreDataMsg = {
     author: messageAuthors.USER,
-    content: `is there more? if yes send it if no send the word '#11#22' exactly without anything else`
+    content: `is there more? if yes send it if no send the word '${ESCAPE_CODE}' exactly without anything else`
 };
 
 const createRequest = prompt => {
@@ -47,7 +49,7 @@ const cleanUpRepairSerializeJsonData = jsonData => {
     const jsonDataCleaned = jsonData
         .replaceAll('```json', '')
         .replaceAll('```', '')
-        .replace('#11#22', '');
+        .replace(ESCAPE_CODE, '');
 
     const jsonDataRepaired = jsonrepair(jsonDataCleaned);
 
@@ -55,24 +57,25 @@ const cleanUpRepairSerializeJsonData = jsonData => {
 };
 
 exports.organizeDataIntoDataStructure = async promptData => {
-    let finalData = '';
+    let data = '';
     let loadMore = true;
     let messages = [{ author: messageAuthors.USER, content: promptData }];
+
     while (loadMore) {
         const prompt = createDataStructurePrompt(messages);
         const request = createRequest(prompt);
         const response = await predictionServiceClient.predict(request);
 
-        const data =
+        const respData =
             response[0].predictions[0].structValue.fields.candidates.listValue
                 .values[0].structValue.fields.content.stringValue;
 
-        if (data.trim().toLowerCase() === '#11#22') {
+        if (respData.trim().toLowerCase() === ESCAPE_CODE) {
             loadMore = false;
             break;
         }
 
-        finalData += data;
+        data += respData;
 
         messages = [
             ...messages,
@@ -81,5 +84,5 @@ exports.organizeDataIntoDataStructure = async promptData => {
         ];
     }
 
-    return cleanUpRepairSerializeJsonData(finalData);
+    return cleanUpRepairSerializeJsonData(data);
 };
