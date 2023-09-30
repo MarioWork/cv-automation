@@ -2,7 +2,9 @@ const createError = require('http-errors');
 
 const { errorMessages } = require('../utils/error-messages');
 const { extractText } = require('../services/document-ai');
-const { organizeDataIntoDataStructure } = require('../services/vertex-ai');
+const {
+    organizeDataIntoDataStructure
+} = require('../services/data-structure-vertex-ai');
 
 module.exports = async (req, res, next) => {
     const file = req.body?.file;
