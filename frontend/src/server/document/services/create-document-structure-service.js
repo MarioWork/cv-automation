@@ -56,12 +56,22 @@ const createWorkExperienceTitle_ = ({ company, address, start, end, title }) =>
         title ?? defaultDocComponentAttributes.value
     }`;
 
+const createCandidateName_ = name => {
+    const splittedCandidateName = name ? name.split(' ') : null;
+
+    return splittedCandidateName
+        ? splittedCandidateName[0] +
+              ' ' +
+              splittedCandidateName[splittedCandidateName.length - 1]
+        : null;
+};
+
 let docIndex = 0;
 
 //TODO: Add page numbers
 //TODO: Add logo on top of header after first page
 const createDocumentStructureService_ = data => {
-    const candidateName = transformCandidateName_(data.name);
+    const candidateName = createCandidateName_(data.name);
 
     const docBody = DocumentApp.getActiveDocument().getBody();
     docBody.setAttributes({
@@ -275,14 +285,4 @@ const createDocComponent_ = ({
     }
 
     return DocumentApp.getActiveDocument().getBody();
-};
-
-const transformCandidateName_ = name => {
-    const splittedCandidateName = name ? name.split(' ') : null;
-
-    return splittedCandidateName
-        ? splittedCandidateName[0] +
-              ' ' +
-              splittedCandidateName[splittedCandidateName.length - 1]
-        : null;
 };
