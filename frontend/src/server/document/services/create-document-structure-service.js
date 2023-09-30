@@ -14,7 +14,16 @@ const defaultDocComponentAttributes = {
     value: 'Unknown',
     imageWidth: 100,
     imageHeigh: 50,
-    spacingBefore: 0
+    spacingBefore: 0,
+    headingStyle: DocumentApp.ParagraphHeading.NORMAL
+};
+
+const docHeadingStyles = {
+    TITLE: DocumentApp.ParagraphHeading.TITLE,
+    SUBTITLE: DocumentApp.ParagraphHeading.SUBTITLE,
+    NORMAL: DocumentApp.ParagraphHeading.NORMAL,
+    HEADING1: DocumentApp.ParagraphHeading.HEADING1,
+    HEADING2: DocumentApp.ParagraphHeading.HEADING2
 };
 
 const docHierarchyLevel = {
@@ -47,7 +56,11 @@ const createDocumentStructureService_ = data => {
             level: docHierarchyLevel.DOC_START,
             type: docComponentsType.PARAGRAPH,
             value: candidateName,
-            attributes: { fontSize: 32, bold: true },
+            attributes: {
+                fontSize: 32,
+                bold: true,
+                headingStyle: docHeadingStyles.TITLE
+            },
             children: [
                 {
                     level: docHierarchyLevel.ROW_CHILD,
@@ -66,7 +79,8 @@ const createDocumentStructureService_ = data => {
             type: docComponentsType.PARAGRAPH,
             value: data.jobTitle,
             attributes: {
-                fontSize: 22
+                fontSize: 22,
+                headingStyle: docHeadingStyles.SUBTITLE
             }
         },
         {
@@ -75,7 +89,8 @@ const createDocumentStructureService_ = data => {
             value: docSectionTitles.EDUCATION,
             attributes: {
                 fontSize: 22,
-                spacingBefore: 70
+                spacingBefore: 70,
+                headingStyle: docHeadingStyles.HEADING1
             }
         },
         ...data.education.map(({ start, end, title, institution }) => ({
@@ -91,7 +106,8 @@ const createDocumentStructureService_ = data => {
             value: docSectionTitles.PROFILE,
             attributes: {
                 fontSize: 22,
-                spacingBefore: 30
+                spacingBefore: 30,
+                headingStyle: docHeadingStyles.HEADING1
             }
         },
         {
@@ -105,7 +121,8 @@ const createDocumentStructureService_ = data => {
             value: docSectionTitles.TECHNICAL_SKILLS,
             attributes: {
                 fontSize: 22,
-                spacingBefore: 30
+                spacingBefore: 30,
+                headingStyle: docHeadingStyles.HEADING1
             }
         },
         ...data.skills.map(skill => ({
@@ -119,7 +136,8 @@ const createDocumentStructureService_ = data => {
             value: docSectionTitles.LANGUAGES,
             attributes: {
                 fontSize: 22,
-                spacingBefore: 30
+                spacingBefore: 30,
+                headingStyle: docHeadingStyles.HEADING1
             }
         },
         ...data.languages.map(language => ({
@@ -133,7 +151,8 @@ const createDocumentStructureService_ = data => {
             value: docSectionTitles.PROJECTS,
             attributes: {
                 fontSize: 22,
-                spacingBefore: 30
+                spacingBefore: 30,
+                headingStyle: docHeadingStyles.HEADING1
             }
         },
         ...data.workExperience.map(
@@ -207,7 +226,8 @@ const createDocComponent_ = ({
         value: defaultValue,
         imageWidth: defaultImageWidth,
         imageHeight: defaultImageHeight,
-        spacingBefore: defaultSpacingBefore
+        spacingBefore: defaultSpacingBefore,
+        headingStyle: defaultHeadingStyle
     } = defaultDocComponentAttributes;
 
     const parentComponent =
@@ -218,6 +238,7 @@ const createDocComponent_ = ({
     if (componentType === docComponentsType.PARAGRAPH)
         return parentComponent
             .insertParagraph(docIndex, value ?? defaultValue)
+            .setHeading(attributes?.headingStyle ?? defaultHeadingStyle)
             .setFontSize(attributes?.fontSize ?? defaultFontSize)
             .setBold(attributes?.bold ?? defaultBoldValue)
             .setForegroundColor(attributes?.fontColor ?? defaultFontColor)
