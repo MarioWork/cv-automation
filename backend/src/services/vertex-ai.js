@@ -4,6 +4,8 @@ const createDataStructurePrompt = require('../utils/prompt-creator.js');
 
 const { PredictionServiceClient } = aiplatform.v1;
 
+const { jsonrepair } = require('jsonrepair');
+
 const { helpers } = aiplatform;
 
 const predictionServiceClient = new PredictionServiceClient({
@@ -17,7 +19,7 @@ const messageAuthors = {
 
 const loadMoreDataMsg = {
     author: messageAuthors.USER,
-    content: `is there more? if yes send it if no send the word no`
+    content: `is there more? if yes send it if no send the word '#11#22' exactly without anything else`
 };
 
 const createRequest = prompt => {
@@ -41,17 +43,24 @@ const createRequest = prompt => {
     };
 };
 
-const cleanUpSerializeData = dataStructureString =>
-    JSON.parse(
-        dataStructureString.replaceAll('```json', '').replaceAll('```', '')
-    );
+const cleanUpRepairSerializeJsonData = jsonData => {
+    const jsonDataCleaned = jsonData
+        .replaceAll('```json', '')
+        .replaceAll('```', '')
+        .replace('#11#22', '');
+
+    const jsonDataRepaired = jsonrepair(jsonDataCleaned);
+
+    return JSON.parse(jsonDataRepaired);
+};
 
 exports.organizeDataIntoDataStructure = async promptData => {
     let finalData = '';
     let loadMore = true;
     let messages = [{ author: messageAuthors.USER, content: promptData }];
-
+    let requestCount = 0;
     while (loadMore) {
+        console.log(requestCount++);
         const prompt = createDataStructurePrompt(messages);
         const request = createRequest(prompt);
         const response = await predictionServiceClient.predict(request);
@@ -60,7 +69,7 @@ exports.organizeDataIntoDataStructure = async promptData => {
             response[0].predictions[0].structValue.fields.candidates.listValue
                 .values[0].structValue.fields.content.stringValue;
 
-        if (data.trim() === 'no') {
+        if (data.trim().toLowerCase() === '#11#22') {
             loadMore = false;
             break;
         }
@@ -77,5 +86,5 @@ exports.organizeDataIntoDataStructure = async promptData => {
     //TODO: For debugging purposes
     //return finalData;
 
-    return cleanUpSerializeData(finalData);
+    return cleanUpRepairSerializeJsonData(finalData);
 };
