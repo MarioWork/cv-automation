@@ -15,7 +15,8 @@ const defaultDocComponentAttributes = {
     imageWidth: 100,
     imageHeigh: 50,
     spacingBefore: 0,
-    headingStyle: DocumentApp.ParagraphHeading.NORMAL
+    headingStyle: DocumentApp.ParagraphHeading.NORMAL,
+    fontFamily: 'Inter'
 };
 
 const docHeadingStyles = {
@@ -40,6 +41,21 @@ const docSectionTitles = {
     PROJECTS: 'Projects'
 };
 
+const createEducationTitle_ = ({ start, end, title, institution }) =>
+    `${start ?? defaultDocComponentAttributes.value}}/${
+        end ?? defaultDocComponentAttributes.value
+    }} - ${title ?? defaultDocComponentAttributes.value}} | ${
+        institution ?? v
+    }`;
+
+const createWorkExperienceTitle_ = ({ company, address, start, end, title }) =>
+    `${company ?? defaultDocComponentAttributes.value}}, ${
+        address ?? defaultDocComponentAttributes.value
+    }} - Since ${start ?? defaultDocComponentAttributes.value}
+    } @ ${end ?? defaultDocComponentAttributes.value}} ${
+        title ?? defaultDocComponentAttributes.value
+    }`;
+
 let docIndex = 0;
 
 //TODO: Add page numbers
@@ -48,9 +64,11 @@ const createDocumentStructureService_ = data => {
     const candidateName = transformCandidateName_(data.name);
 
     const docBody = DocumentApp.getActiveDocument().getBody();
-    docBody.setAttributes({ [DocumentApp.Attribute.FONT_FAMILY]: 'Inter' });
+    docBody.setAttributes({
+        [DocumentApp.Attribute.FONT_FAMILY]:
+            defaultDocComponentAttributes.fontFamily
+    });
 
-    //TODO: Create a function to verify string instead always ?? unknown
     const docStructure = [
         {
             level: docHierarchyLevel.DOC_START,
@@ -93,12 +111,10 @@ const createDocumentStructureService_ = data => {
                 headingStyle: docHeadingStyles.HEADING1
             }
         },
-        ...data.education.map(({ start, end, title, institution }) => ({
+        ...data.education.map(education => ({
             level: docHierarchyLevel.NEW_ROW,
             type: docComponentsType.PARAGRAPH,
-            value: `${start ?? 'Unknown'}/${end ?? 'Unknown'} - ${
-                title ?? 'Unknown'
-            } | ${institution ?? 'Unknown'}`
+            value: createEducationTitle_(education)
         })),
         {
             level: docHierarchyLevel.NEW_ROW,
@@ -155,25 +171,19 @@ const createDocumentStructureService_ = data => {
                 headingStyle: docHeadingStyles.HEADING1
             }
         },
-        ...data.workExperience.map(
-            ({ company, address, start, end, title, description }) => ({
+        ...data.workExperience.map(experience => ({
+            level: docHierarchyLevel.NEW_ROW,
+            type: docComponentsType.PARAGRAPH,
+            value: createWorkExperienceTitle_(experience),
+            attributes: {
+                bold: true
+            },
+            children: experience.description.map(desc => ({
                 level: docHierarchyLevel.NEW_ROW,
-                type: docComponentsType.PARAGRAPH,
-                value: `${company ?? 'Unknown'}, ${
-                    address ?? 'Unknown'
-                } - Since ${start ?? 'Unknown'} @ ${end ?? 'Unknown'} ${
-                    title ?? 'Unknown'
-                }`,
-                attributes: {
-                    bold: true
-                },
-                children: description.map(desc => ({
-                    level: docHierarchyLevel.NEW_ROW,
-                    type: docComponentsType.LIST_ITEM,
-                    value: desc ?? 'Unknown'
-                }))
-            })
-        )
+                type: docComponentsType.LIST_ITEM,
+                value: desc ?? defaultDocComponentAttributes.value
+            }))
+        }))
     ];
 
     createDocStructure_({
