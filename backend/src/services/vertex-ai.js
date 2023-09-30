@@ -58,9 +58,7 @@ exports.organizeDataIntoDataStructure = async promptData => {
     let finalData = '';
     let loadMore = true;
     let messages = [{ author: messageAuthors.USER, content: promptData }];
-    let requestCount = 0;
     while (loadMore) {
-        console.log(requestCount++);
         const prompt = createDataStructurePrompt(messages);
         const request = createRequest(prompt);
         const response = await predictionServiceClient.predict(request);
@@ -82,9 +80,6 @@ exports.organizeDataIntoDataStructure = async promptData => {
             loadMoreDataMsg
         ];
     }
-
-    //TODO: For debugging purposes
-    //return finalData;
 
     return cleanUpRepairSerializeJsonData(finalData);
 };
