@@ -46,7 +46,7 @@ const docTitlesComponents = {
         type: docComponentsType.PARAGRAPH,
         value: 'Education / Training',
         attributes: {
-            fontSize: 22,
+            fontSize: 24,
             spacingBefore: 50,
             headingStyle: docHeadingStyles.HEADING1
         }
@@ -56,7 +56,7 @@ const docTitlesComponents = {
         type: docComponentsType.PARAGRAPH,
         value: 'Profile',
         attributes: {
-            fontSize: 22,
+            fontSize: 24,
             spacingBefore: 50,
             headingStyle: docHeadingStyles.HEADING1
         }
@@ -66,7 +66,7 @@ const docTitlesComponents = {
         type: docComponentsType.PARAGRAPH,
         value: 'Technical Skills',
         attributes: {
-            fontSize: 22,
+            fontSize: 24,
             spacingBefore: 50,
             headingStyle: docHeadingStyles.HEADING1
         }
@@ -76,7 +76,7 @@ const docTitlesComponents = {
         type: docComponentsType.PARAGRAPH,
         value: 'Languages',
         attributes: {
-            fontSize: 22,
+            fontSize: 24,
             spacingBefore: 50,
             headingStyle: docHeadingStyles.HEADING1
         }
@@ -86,7 +86,7 @@ const docTitlesComponents = {
         type: docComponentsType.PARAGRAPH,
         value: 'Projects',
         attributes: {
-            fontSize: 22,
+            fontSize: 24,
             spacingBefore: 50,
             headingStyle: docHeadingStyles.HEADING1
         }
