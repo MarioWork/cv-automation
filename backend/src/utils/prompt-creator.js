@@ -30,7 +30,8 @@ module.exports = messages => ({
     ]
     }
 
-    Do not use unnecessary line breaks and whitespace`,
+    Do not use unnecessary line breaks and whitespace.
+    education and workExperience descriptions are arrays of strings of bullet points.`,
     examples: [],
     messages: messages
 });
