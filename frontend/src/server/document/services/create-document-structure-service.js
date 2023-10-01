@@ -5,8 +5,13 @@ const docComponentsType = {
     LIST_ITEM: 'list item'
 };
 
+const colors = {
+    BLACK: '#000000',
+    LIGHT_GRAY: '#434343'
+};
+
 const defaultDocComponentAttributes = {
-    fontColor: '#000000',
+    fontColor: colors.BLACK,
     fontSize: 12,
     bold: false,
     marginLeft: 0,
@@ -16,7 +21,7 @@ const defaultDocComponentAttributes = {
     imageHeigh: 50,
     spacingBefore: 0,
     headingStyle: DocumentApp.ParagraphHeading.NORMAL,
-    fontFamily: 'Inter'
+    fontFamily: 'inter'
 };
 
 const docHeadingStyles = {
@@ -44,17 +49,16 @@ const docSectionTitles = {
 const createEducationTitle_ = ({ start, end, title, institution }) =>
     `${start ?? defaultDocComponentAttributes.value}}/${
         end ?? defaultDocComponentAttributes.value
-    }} - ${title ?? defaultDocComponentAttributes.value}} | ${
-        institution ?? v
+    } - ${title ?? defaultDocComponentAttributes.value}} | ${
+        institution ?? defaultDocComponentAttributes
     }`;
 
 const createWorkExperienceTitle_ = ({ company, address, start, end, title }) =>
-    `${company ?? defaultDocComponentAttributes.value}}, ${
+    `${company ?? defaultDocComponentAttributes.value}, ${
         address ?? defaultDocComponentAttributes.value
-    }} - Since ${start ?? defaultDocComponentAttributes.value}
-    } @ ${end ?? defaultDocComponentAttributes.value}} ${
-        title ?? defaultDocComponentAttributes.value
-    }`;
+    } - Since ${start ?? defaultDocComponentAttributes.value} @ ${
+        end ?? defaultDocComponentAttributes.value
+    } ${title ?? defaultDocComponentAttributes.value}`;
 
 const createCandidateName_ = name => {
     const splittedCandidateName = name ? name.split(' ') : null;
@@ -108,7 +112,8 @@ const createDocumentStructureService_ = data => {
             value: data.jobTitle,
             attributes: {
                 fontSize: 22,
-                headingStyle: docHeadingStyles.SUBTITLE
+                headingStyle: docHeadingStyles.SUBTITLE,
+                fontColor: colors.LIGHT_GRAY
             }
         },
         {
@@ -124,7 +129,8 @@ const createDocumentStructureService_ = data => {
         ...data.education.map(education => ({
             level: docHierarchyLevel.NEW_ROW,
             type: docComponentsType.PARAGRAPH,
-            value: createEducationTitle_(education)
+            value: createEducationTitle_(education),
+            attributes: { spacingBefore: 10 }
         })),
         {
             level: docHierarchyLevel.NEW_ROW,
@@ -186,7 +192,8 @@ const createDocumentStructureService_ = data => {
             type: docComponentsType.PARAGRAPH,
             value: createWorkExperienceTitle_(experience),
             attributes: {
-                bold: true
+                bold: true,
+                spacingBefore: 10
             },
             children: experience.description.map(desc => ({
                 level: docHierarchyLevel.NEW_ROW,
