@@ -21,7 +21,7 @@ const ESCAPE_CODE = '#11#22';
 
 const loadMoreDataMsg = {
     author: messageAuthors.USER,
-    content: `is there a part of the object missing? if yes send only the missing part of the object, if no send the word '${ESCAPE_CODE}' exactly without anything else`
+    content: `If there is no more data missing send the word '${ESCAPE_CODE}' otherwise send the missing data only`
 };
 
 const createRequest = prompt => {
@@ -69,6 +69,8 @@ exports.organizeDataIntoDataStructure = async promptData => {
         const respData =
             response[0].predictions[0].structValue.fields.candidates.listValue
                 .values[0].structValue.fields.content.stringValue;
+
+        console.log(respData);
 
         if (respData.trim().toLowerCase() === ESCAPE_CODE) {
             loadMore = false;
