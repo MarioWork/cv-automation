@@ -21,7 +21,7 @@ const ESCAPE_CODE = '#11#22';
 
 const loadMoreDataMsg = {
     author: messageAuthors.USER,
-    content: `is there more? if yes send it if no send the word '${ESCAPE_CODE}' exactly without anything else`
+    content: `is there a part of the object missing? if yes send only the missing part of the object, if no send the word '${ESCAPE_CODE}' exactly without anything else`
 };
 
 const createRequest = prompt => {
