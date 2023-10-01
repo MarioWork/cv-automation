@@ -123,15 +123,12 @@ const createWorkExperienceTitle_ = ({
     start = null,
     end = null,
     title = null
-}) => {
-    formatDate(start);
-
-    return `${company ?? defaultDocComponentAttributes.value}, ${
+}) =>
+    `${company ?? defaultDocComponentAttributes.value}, ${
         address ?? defaultDocComponentAttributes.value
     } - Since ${extractYear(start) ?? defaultDocComponentAttributes.value} @ ${
         extractYear(end) ?? defaultDocComponentAttributes.value
     } ${title ?? defaultDocComponentAttributes.value}`;
-};
 
 const createCandidateName_ = name => {
     const splittedCandidateName = name ? name.split(' ') : null;
