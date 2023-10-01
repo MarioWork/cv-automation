@@ -47,9 +47,9 @@ const docSectionTitles = {
 };
 
 const createEducationTitle_ = ({ start, end, title, institution }) =>
-    `${start ?? defaultDocComponentAttributes.value}}/${
+    `${start ?? defaultDocComponentAttributes.value}/${
         end ?? defaultDocComponentAttributes.value
-    } - ${title ?? defaultDocComponentAttributes.value}} | ${
+    } - ${title ?? defaultDocComponentAttributes.value} | ${
         institution ?? defaultDocComponentAttributes
     }`;
 
