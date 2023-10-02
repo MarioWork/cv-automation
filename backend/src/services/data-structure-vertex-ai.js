@@ -70,8 +70,6 @@ exports.organizeDataIntoDataStructure = async promptData => {
             response[0].predictions[0].structValue.fields.candidates.listValue
                 .values[0].structValue.fields.content.stringValue;
 
-        console.log(respData);
-
         if (respData.trim().toLowerCase() === ESCAPE_CODE) {
             loadMore = false;
             break;

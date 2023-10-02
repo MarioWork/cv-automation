@@ -18,8 +18,5 @@ exports.extractText = async ({ file }) => {
 
     const response = await client.processDocument(request);
 
-    //TODO: For debugging purposes
-    //console.log(response[0].document.text);
-
     return response[0].document.text;
 };
