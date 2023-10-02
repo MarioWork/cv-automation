@@ -103,7 +103,7 @@ const defaultUnknownComponent = {
 };
 
 const extractYear = date => {
-    const match = date.match(/\d{4}/);
+    const match = date?.match(/\d{4}/);
 
     if (!match) return date;
 
