@@ -149,7 +149,7 @@ const createDocumentStructureService_ = data => {
 
     const docBody = DocumentApp.getActiveDocument().getBody();
     docBody.setAttributes({
-        [DocumentApp.Attribute.FONT_FAMILY]: 'inter'
+        [DocumentApp.Attribute.FONT_FAMILY]: 'Inter'
     });
 
     const headerComponent = {
