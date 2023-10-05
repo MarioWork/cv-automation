@@ -19,6 +19,10 @@ const messageAuthors = {
 
 const ESCAPE_CODE = '#11#22';
 
+/**
+ * Object that represents a message to be sent to the A.I to check if there is a part of the data missing
+ * in case the tokens are surpassed
+ */
 const loadMoreDataMsg = {
     author: messageAuthors.USER,
     content: `If there is no more data missing send the word '${ESCAPE_CODE}' otherwise send the missing data only`
@@ -45,7 +49,13 @@ const createRequest = prompt => {
     };
 };
 
+/**
+ * Cleans up the json string returned by the A.I, repairs the json  and serializes it
+ * @param {String} jsonData
+ * @returns {object}
+ */
 const cleanUpRepairSerializeJsonData = jsonData => {
+    //Sometimes the A.I returns the Json object indented with json code
     const jsonDataCleaned = jsonData
         .replaceAll('```json', '')
         .replaceAll('```', '')
@@ -66,6 +76,7 @@ exports.organizeDataIntoDataStructure = async promptData => {
         const request = createRequest(prompt);
         const response = await predictionServiceClient.predict(request);
 
+        //Extract value from response
         const respData =
             response[0].predictions[0].structValue.fields.candidates.listValue
                 .values[0].structValue.fields.content.stringValue;
