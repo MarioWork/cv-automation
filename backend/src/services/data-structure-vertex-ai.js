@@ -12,6 +12,9 @@ const predictionServiceClient = new PredictionServiceClient({
     apiEndpoint: 'us-central1-aiplatform.googleapis.com'
 });
 
+/**
+ * Enum that represents the chat ai messages authors
+ */
 const messageAuthors = {
     USER: 'user',
     BOT: ' bot'
@@ -28,6 +31,12 @@ const loadMoreDataMsg = {
     content: `If there is no more data missing send the word '${ESCAPE_CODE}' otherwise send the missing data only`
 };
 
+/**
+ * Create te vertex AI request object
+ * @param {
+ * {context: String, examples: Object[], messages: Object[]}} prompt
+ * @returns
+ */
 const createRequest = prompt => {
     const instanceValue = helpers.toValue(prompt);
 
@@ -66,6 +75,11 @@ const cleanUpRepairSerializeJsonData = jsonData => {
     return JSON.parse(jsonDataRepaired);
 };
 
+/**
+ * Receives a string with information and returns a javascript object with the information organized
+ * @param {String} promptData //The data in string format to be interpreted
+ * @returns
+ */
 exports.organizeDataIntoDataStructure = async promptData => {
     let data = '';
     let loadMore = true;
