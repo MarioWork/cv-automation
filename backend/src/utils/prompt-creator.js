@@ -1,3 +1,9 @@
+/**
+ * Creates the prompt object with the messages
+ * @param {{author: string, content: string}[]} messages
+ * @returns {Object}
+ */
+
 module.exports = messages => ({
     context: `Translate the following data into English and return it as a JSON object string, with the data organized and formatted as follows:
 
