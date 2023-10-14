@@ -36,12 +36,15 @@ exports.useDocument = () => {
 
         try {
             state.currentProcess.value = processType.CLEAN_UP;
+
             await runServerFunction({
                 functionName: serverFunctions.CLEAR_DOCUMENT
             });
 
             state.currentProcess.value = processType.EXTRACTING;
+
             const base64File = await createBase64File(state.file.value);
+
             const data = await runServerFunction({
                 functionName: serverFunctions.PROCESS_DOCUMENT,
                 data: { base64File }
@@ -50,11 +53,13 @@ exports.useDocument = () => {
             if (!data) throw Error();
 
             state.currentProcess.value = processType.WRITING;
+
             await runServerFunction({
                 functionName: serverFunctions.WRITE_DATA_TO_DOCUMENT,
                 data: data
             });
 
+            //Closes the google docs dialog
             google.script.host.close();
         } catch (error) {
             state.currentProcess.value = processType.EMPTY;
