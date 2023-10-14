@@ -55,3 +55,17 @@ Automatize the conversion of the candidate curriculum into a company internal cu
 - Click `deploy` and deploy a new version
 
 - Go to Google Cloud Project `Google Marketplace API` and increment the addon version
+
+## Technologies
+
+- [Javascript](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript)
+- [Vue.js 3](https://vuejs.org/)
+- [Parcel.js](https://parceljs.org/)
+- [Google Cloud](https://cloud.google.com/?hl=en)
+- [Google Apps Script](https://www.google.com/script/start/)
+- [Google Vertex A.I Bison Models](https://cloud.google.com/vertex-ai/docs/generative-ai/model-reference/overview)
+- [Google Document A.I](https://cloud.google.com/document-ai?hl=en)
+
+## Useful Resources
+
+- [Google Apps Script](https://developers.google.com/apps-script)
