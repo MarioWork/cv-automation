@@ -1,29 +1,57 @@
-# README #
+# CV Automation
 
-This README would normally document whatever steps are necessary to get your application up and running.
+## Objective
 
-### What is this repository for? ###
+Automatize the conversion of the candidate curriculum into a company internal curriculum and enhance it, using generative A.I.
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+## Coding formatting rules used
 
-### How do I get set up? ###
+- Eslint Recommended
+- Single Quotes
+- Avoid Parentheses on functions with one parameter
+- Tab width of 4
+- No trailing commas,
+- No console logs
+- No unused variables
 
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
+## To run backend in development
 
-### Contribution guidelines ###
+- Create a `.env` file with the `.env.example` structure
+- `cd backend && npm i && npm run dev`
 
-* Writing tests
-* Code review
-* Other guidelines
+(There is a json file called `CV_Automation.postman_collection.json` with the endpoints requests already created)
 
-### Who do I talk to? ###
+## To deploy backend
 
-* Repo owner or admin
-* Other community or team contact
+- Install [gcloud](https://cloud.google.com/sdk/docs/install) cli tools
+
+- `gcloud auth login`
+
+- Set the current project by running the following command `gcloud config set project <Your-Project-Name>`
+
+- `npm run deploy` to deploy to Google Cloud Functions
+
+- Executes a file in the `scripts` directory called
+  `cloud.sh` that automatically deploys the backend
+
+- Make sure your user has permissions necessary in the project
+
+## To run frontend in development
+
+- Create a `.clasp.json`file inside `frontend`directory with the structure of the `.clasp.example.json`
+
+- `cd frontend && npm i`
+
+- `npm run glogin`
+
+- `npm run glogin`
+
+- `npm run dev`
+
+## To deploy frontend
+
+- Go to the script in [Google Apps Script](https://script.google.com/u/1/home/start)
+
+- Click `deploy` and deploy a new version
+
+- Go to Google Cloud Project `Google Marketplace API` and increment the addon version
