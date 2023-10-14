@@ -1,3 +1,6 @@
+/**
+ * Google Docs components names
+ */
 const docComponentsType = {
     TEXT: 'text',
     PARAGRAPH: 'paragraph',
@@ -11,6 +14,9 @@ const colors = {
     RED: '#F00000'
 };
 
+/**
+ * Default attributes used for components attributes when they are undefined
+ */
 const defaultDocComponentAttributes = {
     fontColor: colors.BLACK,
     fontSize: 12,
@@ -26,6 +32,9 @@ const defaultDocComponentAttributes = {
     noValueFontColor: colors.RED
 };
 
+/**
+ * Google docs heading styles
+ */
 const docHeadingStyles = {
     TITLE: DocumentApp.ParagraphHeading.TITLE,
     SUBTITLE: DocumentApp.ParagraphHeading.SUBTITLE,
@@ -34,6 +43,13 @@ const docHeadingStyles = {
     HEADING2: DocumentApp.ParagraphHeading.HEADING2
 };
 
+/**
+ * Hierarchy levels to let the algorithm know where the component will be placed
+ * 0 = Right the beginning of the document ( When the algorithm starts )
+ * 1 = Component in a new Document Row
+ * 2 = Component will be placed as a child of the parent component
+ * in the document structure we create
+ */
 const docHierarchyLevel = {
     DOC_START: 0,
     NEW_ROW: 1,
@@ -93,6 +109,9 @@ const docTitlesComponents = {
     }
 };
 
+/**
+ * A default component for when data is missing or something went wrong with the component data
+ */
 const defaultUnknownComponent = {
     level: docHierarchyLevel.NEW_ROW,
     type: docComponentsType.PARAGRAPH,
@@ -102,6 +121,12 @@ const defaultUnknownComponent = {
     }
 };
 
+/**
+ * Returns a 4digit string if it finds a 4 digit in the date string
+ * otherwise returns the original date string
+ * @param {string} date
+ * @returns {string}
+ */
 const extractYear = date => {
     const match = date?.match(/\d{4}/);
 
@@ -110,6 +135,11 @@ const extractYear = date => {
     return match[0];
 };
 
+/**
+ *  Creates a education component title with the given data
+ * @param {{start: string=, end: string=, title: string=, institution: string=}} params
+ * @returns {string} final title
+ */
 const createEducationTitle_ = ({ start, end, title, institution }) =>
     `${extractYear(start) ?? defaultDocComponentAttributes.value}/${
         extractYear(end) ?? defaultDocComponentAttributes.value
@@ -117,19 +147,23 @@ const createEducationTitle_ = ({ start, end, title, institution }) =>
         institution ?? defaultDocComponentAttributes
     }`;
 
-const createWorkExperienceTitle_ = ({
-    company = null,
-    address = null,
-    start = null,
-    end = null,
-    title = null
-}) =>
+/**
+ *  Creates a work experience component title with the given data
+ * @param {{company: string=, address: string=, start: string=, end: string=, title: string=}} params
+ * @returns {string} final title
+ */
+const createWorkExperienceTitle_ = ({ company, address, start, end, title }) =>
     `${company ?? defaultDocComponentAttributes.value}, ${
         address ?? defaultDocComponentAttributes.value
     } - Since ${extractYear(start) ?? defaultDocComponentAttributes.value} @ ${
         extractYear(end) ?? defaultDocComponentAttributes.value
     } ${title ?? defaultDocComponentAttributes.value}`;
 
+/**
+ * If possible splits the name and returns a string with first and last name
+ * @param {string} name
+ * @returns {string} transformed name
+ */
 const createCandidateName_ = name => {
     const splittedCandidateName = name ? name.split(' ') : null;
 
@@ -140,10 +174,17 @@ const createCandidateName_ = name => {
         : null;
 };
 
+/**
+ * Document row counter
+ */
 let docIndex = 0;
 
 //TODO: Add page numbers
 //TODO: Add logo on top of header after first page
+/**
+ * Creates the google docs document with the given data
+ * @param {*} data data object interpreted by A.I
+ */
 const createDocumentStructureService_ = data => {
     const candidateName = createCandidateName_(data.name);
 
@@ -192,6 +233,10 @@ const createDocumentStructureService_ = data => {
         value: data?.description
     };
 
+    /**
+     * If there is not skills/education/WorkExperience found
+     * uses the default unknown value component
+     */
     const skillsComponents =
         data?.skills.length > 0
             ? data.skills.map(skill => ({
@@ -238,6 +283,7 @@ const createDocumentStructureService_ = data => {
               }))
             : [defaultUnknownComponent];
 
+    //Array of doc components used to create document structure
     const docStructure = [
         headerComponent,
         jobTitleComponent,
@@ -259,6 +305,11 @@ const createDocumentStructureService_ = data => {
     });
 };
 
+/**
+ * Creates google docs components using the document
+ * structure we created recursively depending on the component children
+ * @param {{parent: *=, children: *[], level: string=}} param0
+ */
 const createDocStructure_ = ({ parent, children, level }) => {
     if (level < docHierarchyLevel.ROW_CHILD) docIndex++;
 
@@ -287,6 +338,11 @@ const createDocStructure_ = ({ parent, children, level }) => {
     );
 };
 
+/**
+ * Creates the google docs component with the given data
+ * @param {{parent: *, componentType: docComponentsType, value: string=, attributes: *. level: string?}}
+ * @returns component created
+ */
 const createDocComponent_ = ({
     parent,
     componentType,
@@ -308,10 +364,16 @@ const createDocComponent_ = ({
         noValueFontColor: defaultNoValueFontColor
     } = defaultDocComponentAttributes;
 
+    /**
+     * if value is missing give it no value color
+     * if the font color is not declared in the attributes give it a default color
+     */
     const fontColor = value
         ? attributes?.fontColor ?? defaultFontColor
         : defaultNoValueFontColor;
 
+    /** Every time the component level is not a ROW_CHILD
+     * the parent of the component should be the body of the document */
     const parentComponent =
         level < docHierarchyLevel.ROW_CHILD
             ? DocumentApp.getActiveDocument().getBody()
