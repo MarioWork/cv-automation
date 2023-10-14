@@ -24,14 +24,19 @@ function onOpen(e) {
         .addToUi();
 }
 
+/**
+ * Displays on the Google Docs UI the Show Upload File dialog
+ */
 function showUploadFileDialog() {
     const html = HtmlService.createHtmlOutputFromFile('upload-dialog.html')
         .setWidth(400)
         .setHeight(350);
 
+    //Workaround for removing the dialog title
     const emptyCharacter = '‎';
 
     DocumentApp.getUi().showModalDialog(html, emptyCharacter);
 }
 
+//TODO: Implement
 function enhanceCVSidebar() {}
