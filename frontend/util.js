@@ -1,3 +1,8 @@
+/**
+ * Copies all files from frontend server directory
+ * into the final destination directory recursively
+ */
+
 const fs = require('fs');
 const path = require('path');
 
