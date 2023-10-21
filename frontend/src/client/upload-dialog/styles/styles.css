@@ -46,10 +46,10 @@ main {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 15px;
     font-weight: bold;
     animation: fadeIn 0.5s;
     max-width: 100%;
+    width: 100%;
 }
 
 .selected-file > span {
