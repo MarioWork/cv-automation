@@ -49,6 +49,14 @@ main {
     gap: 15px;
     font-weight: bold;
     animation: fadeIn 0.5s;
+    max-width: 100%;
+}
+
+.selected-file > span {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 80%;
 }
 
 .remove-file-button {
