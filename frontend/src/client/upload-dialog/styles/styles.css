@@ -49,6 +49,7 @@ main {
     font-weight: bold;
     animation: fadeIn 0.5s;
     max-width: 100%;
+    gap: 0.2rem;
     width: 100%;
 }
 
@@ -67,6 +68,7 @@ main {
     padding-top: 3px;
     cursor: pointer;
     transition: all 0.5s;
+    border-radius: 50%;
 }
 
 .remove-file-button:disabled {
