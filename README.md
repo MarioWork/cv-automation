@@ -69,3 +69,4 @@ Automatize the conversion of the candidate curriculum into a company internal cu
 ## Useful Resources
 
 - [Google Apps Script](https://developers.google.com/apps-script)
+- [Deploy Google Apps Script (Video)](https://www.youtube.com/watch?v=6jcc3xm7aRU)
