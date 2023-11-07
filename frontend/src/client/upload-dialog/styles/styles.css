@@ -46,9 +46,18 @@ main {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 15px;
     font-weight: bold;
     animation: fadeIn 0.5s;
+    max-width: 100%;
+    gap: 0.2rem;
+    width: 100%;
+}
+
+.selected-file > span {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 80%;
 }
 
 .remove-file-button {
@@ -59,6 +68,7 @@ main {
     padding-top: 3px;
     cursor: pointer;
     transition: all 0.5s;
+    border-radius: 50%;
 }
 
 .remove-file-button:disabled {
