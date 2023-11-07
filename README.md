@@ -2,7 +2,7 @@
 
 ## Objective
 
-Automatize the conversion of the candidate curriculum into a company internal curriculum and enhance it, using generative A.I.
+Automate the conversion of the candidate curriculum into a company internal curriculum and enhance it, using generative A.I.
 
 ## Coding formatting rules used
 
@@ -35,6 +35,14 @@ Automatize the conversion of the candidate curriculum into a company internal cu
   `cloud.sh` that automatically deploys the backend
 
 - Make sure your user has permissions necessary in the project
+
+## To create frontend Project
+
+- Create a [Google Apps Script](https://script.google.com/u/1/home/start) Project
+
+- Associate the `Google Apps Script` ID with the `.clasp.json` file ( In Google Apps Script Project Settings you can find the Script ID)
+
+- Associate the `Google Apps Script` ID with a Google Cloud Project by going into the Google Apps Project Settings
 
 ## To run frontend in development
 
