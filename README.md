@@ -42,7 +42,7 @@ Automate the conversion of the candidate curriculum into a company internal curr
 
 - Associate the `Google Apps Script` ID with the `.clasp.json` file ( In Google Apps Script Project Settings you can find the Script ID)
 
-- Associate the `Google Apps Script` ID with a Google Cloud Project by going into the Google Apps Project Settings
+- Associate the `Google Apps Script` with a Google Cloud Project by going into the Google Apps Project Settings
 
 ## To run frontend in development
 
